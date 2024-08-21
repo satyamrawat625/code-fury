@@ -2,6 +2,7 @@ package com.ecommerce.dao.impl;
 
 import com.ecommerce.dao.CustomerDao;
 import com.ecommerce.exception.CustomerNotFoundException;
+import com.ecommerce.exception.InvalidCustomerException;
 import com.ecommerce.model.Customer;
 
 import java.sql.*;
@@ -61,7 +62,7 @@ public class CustomerDaoImpl implements CustomerDao {
                 return mapRowToCustomer(rs);
             }
         } catch (SQLException e) {
-            throw new CustomerNotFoundException("Error finding customer by email: "+email);
+            throw new InvalidCustomerException("Error finding customer by email: "+email);
         }
         return null;
     }

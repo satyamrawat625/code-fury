@@ -1,6 +1,8 @@
 package com.ecommerce.dao.impl;
 
 import com.ecommerce.dao.SubscriptionDao;
+import com.ecommerce.exception.InvalidSubscriptionException;
+import com.ecommerce.exception.SubscriptionAlreadyExistsException;
 import com.ecommerce.exception.SubscriptionNotFoundException;
 import com.ecommerce.model.Customer;
 import com.ecommerce.model.Product;
@@ -71,7 +73,11 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
                 subscription.setId(generatedKeys.getLong(1));
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error saving subscription", e);
+            try {
+                throw new SubscriptionAlreadyExistsException("Error saving subscription");
+            } catch (SubscriptionAlreadyExistsException ex) {
+                throw new RuntimeException(ex);
+            }
         }
         return subscription;
     }
@@ -86,7 +92,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
                 subscriptions.add(mapRowToSubscription(rs));
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error finding active subscriptions", e);
+            throw new InvalidSubscriptionException("Error finding active subscriptions");
         }
         return subscriptions;
     }
@@ -101,7 +107,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
                 subscriptions.add(mapRowToSubscription(rs));
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error finding inactive subscriptions", e);
+            throw new InvalidSubscriptionException("Error finding inactive subscriptions");
         }
         return subscriptions;
     }
@@ -113,7 +119,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
             stmt.setLong(1, subscriptionId);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error deactivating subscription", e);
+            throw new InvalidSubscriptionException("Error deactivating subscription");
         }
     }
 
@@ -124,7 +130,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
             stmt.setLong(1, subscriptionId);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error activating subscription", e);
+            throw new InvalidSubscriptionException("Error activating subscription");
         }
     }
 

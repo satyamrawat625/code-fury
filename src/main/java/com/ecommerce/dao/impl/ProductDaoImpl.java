@@ -2,6 +2,7 @@ package com.ecommerce.dao.impl;
 
 import com.ecommerce.dao.ProductDao;
 import com.ecommerce.exception.DataAccessException;
+import com.ecommerce.exception.InvalidProductException;
 import com.ecommerce.exception.ProductNotFoundException;
 import com.ecommerce.model.Product;
 
@@ -45,7 +46,7 @@ public class ProductDaoImpl implements ProductDao {
             stmt.setLong(4, product.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error updating product", e);
+            throw new InvalidProductException("The Product details could not be updated");
         }
     }
 
@@ -56,7 +57,7 @@ public class ProductDaoImpl implements ProductDao {
             stmt.setLong(1, productId);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error deleting product", e);
+            throw new InvalidProductException("Error deleting product");
         }
     }
 
@@ -70,7 +71,7 @@ public class ProductDaoImpl implements ProductDao {
                 products.add(mapRowToProduct(rs));
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error finding all products", e);
+            throw new InvalidProductException("Error finding all products");
         }
         return products;
     }
