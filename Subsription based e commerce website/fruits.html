@@ -1,0 +1,631 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Fruits - Subscription-Based Food Store</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+        // Function to add items to the cart
+        function addToCart(productId, productName, productPrice, productQuantity) {
+            const existingProduct = cart.find(item => item.id === productId);
+    
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    quantity: 1,
+                    unitQuantity: productQuantity
+                });
+            }
+    
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${productName} has been added to your cart!`);
+        }
+    
+        document.querySelectorAll('.add-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const productCard = this.closest('.product-card');
+                const productId = parseInt(productCard.getAttribute('data-product-id'));
+                const productName = productCard.getAttribute('data-product-name');
+                const productPrice = parseFloat(productCard.getAttribute('data-product-price'));
+                const productQuantity = productCard.getAttribute('data-product-quantity');
+    
+                addToCart(productId, productName, productPrice, productQuantity);
+            });
+        });
+    </script>
+    
+        <style>
+            body {
+                background: linear-gradient(135deg, #f3f4f6, #ffffff);
+                font-family: 'Arial', sans-serif;
+                color: #333;
+            }
+    
+            header {
+                background-color: #576444;
+                padding: 1rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: white;
+            }
+    
+            header .logo h1 {
+                font-size: 1.75rem;
+                font-weight: bold;
+                margin: 0;
+            }
+    
+            .search-bar input {
+                padding: 0.5rem 1rem;
+                border: none;
+                border-radius: 25px;
+                width: 300px;
+            }
+    
+            .login-btn-container a {
+                color: white;
+                background-color: #aeb1a3;
+                padding: 0.5rem 1.25rem;
+                border-radius: 25px;
+                font-weight: bold;
+                text-decoration: none;
+                transition: background 0.3s;
+            }
+    
+            .login-btn-container a:hover {
+                background-color: #333;
+            }
+    
+            main {
+                padding: 2rem 0;
+            }
+    
+            h2 {
+                color: #576444;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+    
+            .product-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                padding: 0 2rem;
+            }
+    
+            .product-card {
+                background: white;
+                border-radius: 15px;
+                padding: 1.5rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+            }
+    
+            .product-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            }
+    
+            .product-card img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 10px;
+                margin-bottom: 1rem;
+            }
+    
+            .product-card h3 {
+                color: #576444;
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+            }
+    
+            .price {
+                font-size: 1.25rem;
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+            }
+    
+            .original-price {
+                text-decoration: line-through;
+                color: #888;
+                margin-right: 0.5rem;
+            }
+    
+            .discount {
+                font-size: 0.9rem;
+                color: #dc3545;
+                margin-bottom: 1rem;
+            }
+    
+            .add-btn, .subscribe-btn {
+                display: block;
+                width: 100%;
+                padding: 0.75rem;
+                margin-bottom: 0.5rem;
+                border: none;
+                border-radius: 25px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+    
+            .add-btn {
+                background-color: #576444;
+                color: white;
+            }
+    
+            .add-btn:hover {
+                background-color: #333;
+            }
+    
+            .subscribe-btn {
+                background-color: #aeb1a3;
+                color: white;
+            }
+    
+            .subscribe-btn:hover {
+                background-color: #576444;
+                color: white;
+            }
+    
+            .plan-type {
+                padding: 0.5rem;
+                width: 100%;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                margin-top: 0.5rem;
+            }
+    
+            footer {
+                background-color: #576444;
+                color: white;
+                text-align: center;
+                padding: 1rem;
+                margin-top: 2rem;
+            }
+        </style>    
+</head>
+
+<body>
+      <header>
+            <div class="logo">
+                <h1>Fresh Fruits</h1>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products...">
+            </div>
+            <div class="login-btn-container">
+                <a href="login.html" class="login-btn">Login</a>
+            </div>
+            <div class="cart-icon">
+                <a href="cart.html">
+                    <img src="cart-icon.png" alt="Cart" style="width: 40px;">
+                </a>
+            </div>
+        </header>
+
+    <main>
+        <div class="container">
+            <section class="products">
+                <h2>Available Fresh Fruits</h2>
+                <div class="product-container">
+                    <!-- Fruit 1 -->
+                    <div class="product-card" data-product-id="1" data-product-name="Baby Banana (Chota Kele)" data-product-price="37" data-product-quantity="6 pieces">
+                        <img src="banana.jpg" alt="Banana">
+                        <h3>Baby Banana (Chota Kele)</h3>
+                        <p>6 pieces</p>
+                        <p class="price"><span class="original-price">₹46</span> ₹37</p>
+                        <p class="discount">19% OFF</p>
+                        <a class="add-btn" href="cart.html">Add to Cart</a>
+                        <button class="subscribe-btn">Subscribe & Save 10%</button>
+                        <select class="plan-type">
+                            <option value="weekly">Weekly</option>
+                            <option value="bi-weekly">Bi-Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <!-- Fruit 2 -->
+                    <div class="product-card" data-product-id="2" data-product-name="Daily Apple (Saparchand)" data-product-price="105" data-product-quantity="4 pieces">
+                        <img src="apple.jpg" alt="Apple">
+                        <h3>Daily Apple (Saparchand)</h3>
+                        <p>4 pieces</p>
+                        <p class="price"><span class="original-price">₹131</span> ₹105</p>
+                        <p class="discount">20% OFF</p>
+                        <a class="add-btn" href="cart.html">Add to Cart</a>
+                        <button class="subscribe-btn">Subscribe & Save 15%</button>
+                        <select class="plan-type">
+                            <option value="weekly">Weekly</option>
+                            <option value="bi-weekly">Bi-Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Subscription-Based Food Store. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Cart Functionality -->
+    <script>
+        const cart = [];
+
+        // Function to add items to the cart
+        function addToCart(productId, productName, productPrice, productQuantity) {
+            // Check if the product is already in the cart
+            const existingProduct = cart.find(item => item.id === productId);
+
+            if (existingProduct) {
+                // Update the quantity if the product is already in the cart
+                existingProduct.quantity += 1;
+            } else {
+                // Add the new product to the cart
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    quantity: 1,
+                    unitQuantity: productQuantity
+                });
+            }
+
+            // Save the cart to local storage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${productName} has been added to your cart!`);
+        }
+
+        // Event listeners for "Add to Cart" buttons
+        document.querySelectorAll('.add-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const productCard = this.closest('.product-card');
+                const productId = parseInt(productCard.getAttribute('data-product-id'));
+                const productName = productCard.getAttribute('data-product-name');
+                const productPrice = parseFloat(productCard.getAttribute('data-product-price'));
+                const productQuantity = productCard.getAttribute('data-product-quantity');
+
+                addToCart(productId, productName, productPrice, productQuantity);
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Fruits - Subscription-Based Food Store</title>
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f3f4f6, #ffffff);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        header {
+            background-color: #576444;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        header .logo h1 {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .search-bar input {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            width: 300px;
+        }
+
+        .login-btn-container a {
+            color: white;
+            background-color: #aeb1a3;
+            padding: 0.5rem 1.25rem;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .login-btn-container a:hover {
+            background-color: #333;
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        h2 {
+            color: #576444;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            color: #576444;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            margin-right: 0.5rem;
+        }
+
+        .discount {
+            font-size: 0.9rem;
+            color: #dc3545;
+            margin-bottom: 1rem;
+        }
+
+        .add-btn, .subscribe-btn {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .add-btn {
+            background-color: #576444;
+            color: white;
+        }
+
+        .add-btn:hover {
+            background-color: #333;
+        }
+
+        .subscribe-btn {
+            background-color: #aeb1a3;
+            color: white;
+        }
+
+        .subscribe-btn:hover {
+            background-color: #576444;
+            color: white;
+        }
+
+        .plan-type {
+            padding: 0.5rem;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 0.5rem;
+        }
+
+        footer {
+            background-color: #576444;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>Fresh Fruits</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products...">
+        </div>
+        <div class="login-btn-container">
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+
+            <section class="products">
+                <h2>Available Fresh Fruits</h2>
+                <div class="product-container">
+                    
+                    <div class="product-card">
+                        <img src="banana.jpg" alt="Banana">
+                        <h3>Baby Banana (Chota Kele)</h3>
+                        <p>6 pieces</p>
+                        <p class="price"><span class="original-price">₹46</span> ₹37</p>
+                        <p class="discount">19% OFF</p>
+                        <button class="add-btn">Add to Cart</button>
+                        <button class="subscribe-btn">Subscribe & Save 10%</button>
+                        <select class="plan-type">
+                            <option value="weekly">Weekly</option>
+                            <option value="bi-weekly">Bi-Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    
+                    <div class="product-card">
+                        <img src="apple.jpg" alt="Apple">
+                        <h3>Daily Apple (Saparchand)</h3>
+                        <p>4 pieces</p>
+                        <p class="price"><span class="original-price">₹131</span> ₹105</p>
+                        <p class="discount">20% OFF</p>
+                        <button class="add-btn">Add to Cart</button>
+                        <button class="subscribe-btn">Subscribe & Save 15%</button>
+                        <select class="plan-type">
+                            <option value="weekly">Weekly</option>
+                            <option value="bi-weekly">Bi-Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Subscription-Based Food Store. All Rights Reserved.</p>
+    </footer>
+
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+-->
+
+
+<!-- fruits.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Fruits - Subscription-Based Food Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>Fresh Fruits</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products...">
+        </div>
+        <div class="login-btn-container">
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+
+            <section class="products">
+                <h2>Available Fresh Fruits</h2>
+                <div class="product-container">
+                    <div class="product-card">
+                        <img src="banana.jpg" alt="Banana">
+                        <h3>Baby Banana (Chota Kele)</h3>
+                        <p>6 pieces</p>
+                        <p class="price"><span class="original-price">₹46</span> ₹37</p>
+                        <p class="discount">19% OFF</p>
+                        <button class="add-btn">Add to Cart</button>
+                        <button class="subscribe-btn">Subscribe & Save 10%</button>
+                        <select class="plan-type">
+                            <option value="weekly">Weekly</option>
+                            <option value="bi-weekly">Bi-Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                    <div class="product-card">
+                        <img src="apple.jpg" alt="Apple">
+                        <h3>Daily Apple (Saparchand)</h3>
+                        <p>4 pieces</p>
+                        <p class="price"><span class="original-price">₹131</span> ₹105</p>
+                        <p class="discount">20% OFF</p>
+                        <button class="add-btn">Add to Cart</button>
+                        <button class="subscribe-btn">Subscribe & Save 15%</button>
+                        <select class="plan-type">
+                            <option value="weekly">Weekly</option>
+                            <option value="bi-weekly">Bi-Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                    <div class="product-card">
+                        <img src="apple.jpg" alt="Apple">
+                        <h3>Daily Apple (Saparchand)</h3>
+                        <p>4 pieces</p>
+                        <p class="price"><span class="original-price">₹131</span> ₹105</p>
+                        <p class="discount">20% OFF</p>
+                        <button class="add-btn">Add to Cart</button>
+                        <button class="subscribe-btn">Subscribe & Save 15%</button>
+                        <select class="plan-type">
+                            <option value="weekly">Weekly</option>
+                            <option value="bi-weekly">Bi-Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Subscription-Based Food Store. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html> -->

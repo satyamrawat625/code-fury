@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Add Product</h1>
+    <form action="submit_product.php" method="POST"> <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName" required><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="5" cols="30" required></textarea><br><br>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="10" required><br><br>
+
+        <label for="subscriptionOptions">Subscription Options:</label><br>
+        <input type="checkbox" id="subscriptionOption1" name="subscriptionOptions[]" value="Option 1">
+        <label for="subscriptionOption1">Weekly</label>
+        <input type="checkbox" id="subscriptionOption2" name="subscriptionOptions[]" value="Option 2">
+        <label for="subscriptionOption2">Bi-Weekly</label>
+        <input type="submit" value="Add Product">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Foods - Subscription-Based Food Store</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>Pet Foods</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products...">
+        </div>
+        <div class="login-btn-container">
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+        <div class="cart-icon">
+            <a href="cart.html">
+                <img src="cart-icon.png" alt="Cart" style="width: 40px;">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="products">
+                <h2>Available Pet Foods</h2>
+                <div class="product-container">
+                    <!-- Example Product Card -->
+                    <div class="product-card" data-product-id="1" data-product-name="Dog Food" data-product-price="500" data-product-quantity="1kg">
+                        <img src="dog-food.jpg" alt="Dog Food">
+                        <h3>Dog Food</h3>
+                        <p>1kg</p>
+                        <p class="price"><span class="original-price">₹600</span> ₹500</p>
+                        <p class="discount">17% OFF</p>
+                        <a class="add-btn" href="cart.html">Add to Cart</a>
+                        <button class="subscribe-btn">Subscribe & Save 10%</button>
+                        <select class="plan-type">
+                            <option value="weekly">Weekly</option>
+                            <option value="bi-weekly">Bi-Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                    <!-- Add more product cards here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Subscription-Based Food Store. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

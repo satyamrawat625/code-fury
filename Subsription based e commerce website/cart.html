@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f3f4f6, #ffffff);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        header {
+            background-color: #576444;
+            padding: 1rem 2rem;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-container {
+            margin: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item h4 {
+            margin: 0;
+        }
+
+        .cart-item p {
+            margin: 0;
+        }
+
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quantity-container input {
+            width: 50px;
+            text-align: center;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            text-align: right;
+        }
+
+        footer {
+            background-color: #576444;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Your Cart</h1>
+        <a href="index.html" style="color: white;">Continue Shopping</a>
+    </header>
+
+    <main>
+        <div class="cart-container">
+            <div id="cart-items"></div>
+            <div class="total-price" id="total-price">Total: ₹0</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Subscription-Based Food Store. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function renderCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            const totalPriceElement = document.getElementById('total-price');
+
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                cartItemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <h4>${item.name}</h4>
+                            <p>${item.unitQuantity} - ₹${item.price} each</p>
+                        </div>
+                        <div class="quantity-container">
+                            <button class="decrease-quantity" data-id="${item.id}">-</button>
+                            <input type="text" value="${item.quantity}" readonly>
+                            <button class="increase-quantity" data-id="${item.id}">+</button>
+                        </div>
+                        <div>
+                            <p>₹${itemTotal}</p>
+                            <button class="remove-item" data-id="${item.id}">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            totalPriceElement.textContent = `Total: ₹${total}`;
+
+            // Add event listeners for quantity buttons
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', () => updateQuantity(button.dataset.id, 1));
+            });
+
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', () => updateQuantity(button.dataset.id, -1));
+            });
+
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', () => removeFromCart(button.dataset.id));
+            });
+        }
+
+        function updateQuantity(productId, change) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const product = cart.find(item => item.id === parseInt(productId));
+
+            if (product) {
+                product.quantity += change;
+
+                if (product.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCart();
+                }
+            }
+        }
+
+        function removeFromCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id !== parseInt(productId));
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        // Render the cart on page load
+        renderCart();
+    </script>
+</body>
+
+</html>

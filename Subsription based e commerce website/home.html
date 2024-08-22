@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Subscription-Based Food Store</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #576444;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: url('hero-image.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .btn-main {
+            background-color: #aeb1a3;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+        }
+
+        .category {
+            text-align: center;
+        }
+
+        .category img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #576444;
+            color: white;
+            text-align: center;
+            padding: 1rem 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Subscription-Based Food Store</h1>
+        <p>Fresh food, delivered right to your doorstep!</p>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="login.html" class="login-btn">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Welcome to Freshness!</h2>
+            <p>Explore our range of fresh products delivered to your door.</p>
+            <a href="products.html" class="btn-main">Shop Now</a>
+        </section>
+
+        <div class="categories">
+            <div class="category">
+                <a href="products.html">
+                    <img src="fruits.jpg" alt="Fruits">
+                    <h3>Fresh Fruits</h3>
+                </a>
+            </div>
+            <div class="category">
+                <a href="products.html">
+                    <img src="vegetables.jpg" alt="Vegetables">
+                    <h3>Vegetables</h3>
+                </a>
+            </div>
+            <!-- Add more categories as needed -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Subscription-Based Food Store. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>
