@@ -82,6 +82,25 @@ public class CustomerDaoImpl implements CustomerDao {
         return customers;
     }
 
+    @Override
+    public boolean placeOrder(int orderId, String orderDate, String deliveryDate, String status, int customerId, int productId) {
+        String query = "INSERT INTO orders VALUES (?, ?, ?,?,?,?)";
+        try (PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setInt(1, orderId);
+            stmt.setString(2, orderDate);
+            stmt.setString(3, deliveryDate);
+            stmt.setString(4, status);
+            stmt.setInt(5, customerId);
+            stmt.setInt(6, productId);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error saving customer", e);
+        }
+        return false;
+    }
+
+
     private Customer mapRowToCustomer(ResultSet rs) throws SQLException {
         Customer customer = new Customer();
         customer.setId(rs.getLong("id"));
