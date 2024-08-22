@@ -13,4 +13,6 @@ public interface CustomerDao {
 
 
     List<Customer> findAll();
+
+    boolean placeOrder(int orderId, String orderDate, String deliveryDate, String status, int customerId, int productId);
 }

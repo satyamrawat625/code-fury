@@ -25,11 +25,13 @@ public class App {
             customer.setPassword("hc1234");
             customerService.registerCustomer(customer);
 
+            customerService.activateSubscription(10L);
+            customerService.deactivateSubsciption(10L);
+            boolean status=customerService.placeOrder(1,"21-08-2024","23-08-2024","PENDING",20,21);
+
+
             // Adding a product
-            Product product = new Product();
-            product.setName("Coffee");
-            product.setDescription("Coffee from CCD.");
-            product.setPrice(30);
+            Product product = new Product(1L,"Coffee","Coffee from CCD",30,true);
             productService.addProduct(product);
 
             // Subscribing to a product
