@@ -64,3 +64,15 @@ CREATE TABLE admin (
     adminRole VARCHAR(50) NOT NULL,
     PRIMARY KEY (id)
 );
+
+-- Create Orders table
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_date DATE NOT NULL,
+    delivery_date DATE NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    customer_id INT NOT NULL,
+    product_id INT NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
+    FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
