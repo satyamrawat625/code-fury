@@ -1,6 +1,9 @@
 package com.ecommerce.service;
 
 import com.ecommerce.model.Customer;
+import com.ecommerce.model.Product;
+
+import java.util.List;
 
 public interface CustomerService {
     Customer registerCustomer(Customer customer);
@@ -12,4 +15,7 @@ public interface CustomerService {
     void deactivateSubsciption(int l);
 
     boolean placeOrder(int i, String s, String s1, String pending, int i1, int i2);
+
+    Product findProductById(int id);
+    List<Product> BrowseProduct();
 }
