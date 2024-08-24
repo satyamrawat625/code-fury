@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Fruits - Subscription-Based Food Store</title>
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/fruits.css"  
+</head>
+
+<body>
+      <header>
+            <div class="logo">
+                <h1>Fresh Fruits</h1>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products...">
+            </div>
+            <div class="login-btn-container">
+                <a href="login.html" class="login-btn">Login</a>
+            </div>
+            <div class="cart-icon">
+                <a href="cart.html">
+                    <img src="../images/cart-icon.png" alt="Cart" style="width: 40px;">
+                </a>
+            </div>
+        </header>
+
+    <main>
+        <div class="container">
+            <section class="products">
+                <h2>Available Fresh Fruits</h2>
+                <div class="product-container">
+                    <!-- Fruit 1 -->
+                    <div class="product-card" data-product-id="1" data-product-name="Baby Banana (Chota Kele)" data-product-price="37" data-product-quantity="6 pieces">
+                        <img src="../images/banana.jpg" alt="Banana">
+                        <h3>Baby Banana (Chota Kele)</h3>
+                        <p>6 pieces</p>
+                        <p class="price"><span class="original-price">₹46</span> ₹37</p>
+                        <p class="discount">19% OFF</p>
+                        <a class="add-btn" href="cart.html">Add to Cart</a>
+                        <button class="subscribe-btn">Subscribe and Save 10%</button>
+                        <select class="plan-type">
+                            <option value="weekly">Weekly</option>
+                            <option value="bi-weekly">Bi-Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <!-- Fruit 2 -->
+                    <div class="product-card" data-product-id="2" data-product-name="Daily Apple (Saparchand)" data-product-price="105" data-product-quantity="4 pieces">
+                        <img src="../images/apple.jpg" alt="Apple">
+                        <h3>Daily Apple (Saparchand)</h3>
+                        <p>4 pieces</p>
+                        <p class="price"><span class="original-price">₹131</span> ₹105</p>
+                        <p class="discount">20% OFF</p>
+                        <a class="add-btn" href="cart.html">Add to Cart</a>
+                        <button class="subscribe-btn">Subscribe and Save 15%</button>
+                        <select class="plan-type">
+                            <option value="weekly">Weekly</option>
+                            <option value="bi-weekly">Bi-Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Subscription-Based Food Store. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Cart Functionality -->
+    <script src="../js/fruits.js">
+        
+    </script>
+</body>
+
+</html>
