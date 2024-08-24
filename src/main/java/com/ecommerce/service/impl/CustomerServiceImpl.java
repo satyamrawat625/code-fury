@@ -5,11 +5,15 @@ import com.ecommerce.dao.ProductDao;
 import com.ecommerce.dao.SubscriptionDao;
 import com.ecommerce.factory.StorageFactory;
 import com.ecommerce.model.Customer;
+import com.ecommerce.model.Product;
 import com.ecommerce.service.CustomerService;
+
+import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
     private CustomerDao customerDao;
     private SubscriptionDao subscriptionDao;
+    private ProductDao productDao;
 
     public CustomerServiceImpl(){
         customerDao= StorageFactory.getCustomerDao() ;
@@ -44,6 +48,16 @@ public class CustomerServiceImpl implements CustomerService {
         if(flag)
             return true;
         return false;
+    }
+
+    @Override
+    public Product findProductById(int id) {
+        return productDao.findById(id);
+    }
+
+    @Override
+    public List<Product> BrowseProduct() {
+        return productDao.findAll();
     }
 
 
