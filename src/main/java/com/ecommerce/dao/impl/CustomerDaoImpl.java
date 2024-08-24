@@ -19,11 +19,13 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Customer save(Customer customer) {
-        String query = "INSERT INTO customers (name, email, password) VALUES (?, ?, ?)";
+        String query = "INSERT INTO customers (name, email, password,address,phoneNumber) VALUES (?, ?, ?,?,?)";
         try (PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, customer.getName());
             stmt.setString(2, customer.getEmail());
             stmt.setString(3, customer.getPassword());
+            stmt.setString(4, customer.getAddress());
+            stmt.setString(5, customer.getPhoneNumber());
             stmt.executeUpdate();
 
             ResultSet generatedKeys = stmt.getGeneratedKeys();
@@ -33,6 +35,7 @@ public class CustomerDaoImpl implements CustomerDao {
         } catch (SQLException e) {
             throw new RuntimeException("Error saving customer", e);
         }
+        System.out.println("Register successfully with ID: " + customer.getId());
         return customer;
     }
 
@@ -62,7 +65,7 @@ public class CustomerDaoImpl implements CustomerDao {
                 return mapRowToCustomer(rs);
             }
         } catch (SQLException e) {
-            throw new InvalidCustomerException("Error finding customer by email: "+email);
+            throw new InvalidCustomerException("Invalid email or password");
         }
         return null;
     }
@@ -107,6 +110,8 @@ public class CustomerDaoImpl implements CustomerDao {
         customer.setName(rs.getString("name"));
         customer.setEmail(rs.getString("email"));
         customer.setPassword(rs.getString("password"));
+        customer.setAddress(rs.getString("address"));
+        customer.setPhoneNumber(rs.getString("phoneNumber"));
         return customer;
     }
 }
