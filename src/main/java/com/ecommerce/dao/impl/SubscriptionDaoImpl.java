@@ -20,6 +20,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         this.connection = connection;
     }
 
+    //Find the Subscription by id
     public Subscription findById(int id) throws SQLException {
         String query = "SELECT s.id AS sub_id, s.frequency, s.is_active, " +
                 "c.id AS customer_id, c.name AS customer_name, c.email, " +
@@ -58,6 +59,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         }
     }
 
+    //Save the subscription
     @Override
     public Subscription save(Subscription subscription) {
         String query = "INSERT INTO subscriptions (customer_id, product_id, frequency, is_active) VALUES (?, ?, ?, ?)";
@@ -82,6 +84,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         return subscription;
     }
 
+    //Find the list of Active Subscription
     @Override
     public List<Subscription> findActiveSubscriptions() {
         String query = "SELECT * FROM subscriptions WHERE is_active = true";
@@ -97,6 +100,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         return subscriptions;
     }
 
+    //Find the list of Inactive Subscription
     @Override
     public List<Subscription> findInactiveSubscriptions() {
         String query = "SELECT * FROM subscriptions WHERE is_active = false";
@@ -112,6 +116,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         return subscriptions;
     }
 
+    //Deactivate the Subscription
     @Override
     public void deactivate(int subscriptionId) {
         String query = "UPDATE subscriptions SET is_active = false WHERE id = ?";
@@ -123,6 +128,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         }
     }
 
+    //Activate the Subscription
     @Override
     public void activate(int subscriptionId) {
         String query = "UPDATE subscriptions SET is_active = true WHERE id = ?";

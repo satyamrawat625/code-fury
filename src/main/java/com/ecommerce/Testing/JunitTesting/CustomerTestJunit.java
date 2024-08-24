@@ -22,11 +22,13 @@ public class CustomerTestJunit {
     private AdminServiceImpl adminService;
 
 
+    //@BeforeEach
     @BeforeEach
     public void setUp() {
         customerServiceimpl = new CustomerServiceImpl();
     }
 
+    //Test case 1: Register a customer
     @Test
     void testRegisterCustomer() {
         Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234", "Pune", "1234567890");
@@ -38,6 +40,7 @@ public class CustomerTestJunit {
 
     }
 
+    //Test case 2: Login a customer
     @Test
     void testLoginCustomer()
     {
@@ -50,6 +53,7 @@ public class CustomerTestJunit {
         assertEquals("Vikas Singh", loginCustomer.getName(), "Customer name should match");
     }
 
+    //Test case 3: Activate Subscription
     @Test
     void testActivateSubscription()
     {
@@ -67,6 +71,7 @@ public class CustomerTestJunit {
     }
 
 
+    //Test case 4: Deactivate a subscription
     @Test
     void testdEActivateSubscription()
     {
@@ -83,6 +88,7 @@ public class CustomerTestJunit {
         assertEquals(false, sub.isActive(), "Subscription should be deactive");
     }
 
+    //Test case 5: Find a product by ID
     @Test
     void testfindProductById()
     {
@@ -92,6 +98,7 @@ public class CustomerTestJunit {
         assertNotNull(product1, "Product should not be null");
     }
 
+    //Test case 6: Browse products
     @Test
     void testfBrowseProducts()
     {

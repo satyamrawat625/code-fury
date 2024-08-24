@@ -16,6 +16,7 @@ public class CustomerDaoImpl implements CustomerDao {
         this.connection = connection;
     }
 
+    // Save a new customer record to the database
     @Override
     public Customer save(Customer customer) {
         String query = "INSERT INTO customers (name, email, password,address,phoneNumber) VALUES (?, ?, ?,?,?)";
@@ -38,6 +39,7 @@ public class CustomerDaoImpl implements CustomerDao {
         return customer;
     }
 
+    //Find a customer by ID
     @Override
     public Customer findById(int customerId) {
         String query = "SELECT * FROM customers WHERE id = ?";
@@ -53,6 +55,7 @@ public class CustomerDaoImpl implements CustomerDao {
         return null;
     }
 
+    // Find a customer by email and password
     @Override
     public Customer findByEmailAndPassword(String email, String password) {
         String query = "SELECT * FROM customers WHERE email = ? AND password = ?";
@@ -69,6 +72,7 @@ public class CustomerDaoImpl implements CustomerDao {
         return null;
     }
 
+    //Find all customers
     @Override
     public List<Customer> findAll() {
         String query = "SELECT * FROM customers";
@@ -84,6 +88,7 @@ public class CustomerDaoImpl implements CustomerDao {
         return customers;
     }
 
+    // Place a new order for a customer
     @Override
     public boolean placeOrder(int orderId, String orderDate, String deliveryDate, String status, int customerId, int productId) {
         String query = "INSERT INTO orders VALUES (?, ?, ?,?,?,?)";
@@ -103,6 +108,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
 
+    // Map a ResultSet row to a Customer object
     private Customer mapRowToCustomer(ResultSet rs) throws SQLException {
         Customer customer = new Customer();
         customer.setId(rs.getInt("id"));

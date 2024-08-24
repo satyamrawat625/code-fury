@@ -22,6 +22,7 @@ public class AdminDaoImpl implements AdminDao {
         this.connection = connection;
     }
 
+    // Save a new admin record to the database
     @Override
     public Admin save(Admin admin) {
         String query = "INSERT INTO admin (name, email, password, adminId, adminRole) VALUES (?, ?, ?, ?, ?)";
@@ -44,6 +45,7 @@ public class AdminDaoImpl implements AdminDao {
         return admin;
     }
 
+    // Check admin login credentials
     @Override
     public Admin checkLogin(String email, String password,int adminId) {
         String query = "SELECT * FROM admin WHERE email = ? AND password = ? AND adminId = ?";
@@ -61,6 +63,7 @@ public class AdminDaoImpl implements AdminDao {
         return null;
     }
 
+    //Get the Order history for a specific date range
     @Override
     public void getOrderHistory(Date startDate, Date endDate) {
         String query = "SELECT * FROM Orders WHERE delivery_date BETWEEN ? AND ?";
@@ -95,6 +98,7 @@ public class AdminDaoImpl implements AdminDao {
         }
     }
 
+    // Get the delivery list for the current date
     @Override
     public void getDeliveryList() {
         String query = "SELECT * FROM Orders WHERE delivery_date = ?";
@@ -130,6 +134,7 @@ public class AdminDaoImpl implements AdminDao {
     }
 
 
+    //Map the result set to an Admin object
     private Admin mapRowToAdmin(ResultSet rs) throws SQLException {
         Admin admin= new Admin();
         admin.setId(rs.getInt("id"));

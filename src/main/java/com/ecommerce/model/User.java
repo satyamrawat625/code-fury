@@ -57,7 +57,6 @@ public class User {
         return
                 "Id=" + id +
                         ", Name='" + name + '\'' +
-                        ", Email='" + email + '\'' +
-                        ", Password='" + password + '\'';
+                        ", Email='" + email + '\'';
     }
 }

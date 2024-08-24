@@ -18,30 +18,36 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     private ProductDao productDao;
 
     public SubscriptionServiceImpl() {
-        subscriptionDao= StorageFactory.getSubscriptionDao();
-        customerDao= StorageFactory.getCustomerDao();
-        productDao= StorageFactory.getProductDao();  // initialize other DAOs here  // inject dependencies as needed  // consider using dependency injection for better testability and reusability   // ensure proper error handling and exception management  // consider using a database transaction for atomicity  // consider using a caching mechanism to improve performance  // consider using a caching mechanism with expiration time for frequently accessed data  // consider using a caching mechanism with distributed caching for high-traffic applications  // consider using a
+        subscriptionDao = StorageFactory.getSubscriptionDao();
+        customerDao = StorageFactory.getCustomerDao();
+        productDao = StorageFactory.getProductDao(); // Initialize DAOs
     }
 
+    // Retrieves a list of active subscriptions
     @Override
     public List<Subscription> getActiveSubscriptions() {
         return subscriptionDao.findActiveSubscriptions();
     }
 
+    // Retrieves a list of inactive subscriptions
     @Override
     public List<Subscription> getInactiveSubscriptions() {
         return subscriptionDao.findInactiveSubscriptions();
     }
 
+    // Deactivates a subscription by ID
     @Override
     public void deactivateSubscription(int subscriptionId) {
         subscriptionDao.deactivate(subscriptionId);
     }
 
+    // Activates a subscription by ID
     @Override
     public void activateSubscription(int subscriptionId) {
         subscriptionDao.activate(subscriptionId);
     }
+
+    // Subscribes a customer to a product with a specified frequency
     @Override
     public Subscription subscribeProduct(int customerId, int productId, String frequency) {
         Customer customer = customerDao.findById(customerId);

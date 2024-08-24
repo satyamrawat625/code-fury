@@ -12,29 +12,34 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     public ProductServiceImpl() {
-        productDao=  StorageFactory.getProductDao();
+        productDao = StorageFactory.getProductDao();
     }
 
+    // Adds a new product
     @Override
     public void addProduct(Product product) {
         productDao.save(product);
     }
 
+    // Updates an existing product
     @Override
     public void updateProduct(Product product) {
         productDao.update(product);
     }
 
+    // Deletes a product by ID
     @Override
     public void deleteProduct(int productId) {
         productDao.delete(productId);
     }
 
+    // Retrieves a list of all products
     @Override
     public List<Product> getAllProducts() {
         return productDao.findAll();
     }
 
+    // Retrieves a product by ID
     @Override
     public Product getProductById(int productId) {
         return productDao.findById(productId);

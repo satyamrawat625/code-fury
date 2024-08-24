@@ -18,6 +18,7 @@ public class ProductDaoImpl implements ProductDao {
         this.connection = connection;
     }
 
+    // Saves a new product to the database
     @Override
     public void save(Product product) {
         String query = "INSERT INTO products (name, description, price) VALUES (?, ?, ?)";
@@ -37,6 +38,7 @@ public class ProductDaoImpl implements ProductDao {
         }
     }
 
+    //Update the product details
     @Override
     public void update(Product product) {
         String query = "UPDATE products SET name = ?, description = ?, price = ? WHERE id = ?";
@@ -52,6 +54,7 @@ public class ProductDaoImpl implements ProductDao {
         }
     }
 
+    //Delete the product from productid
     @Override
     public void delete(int productId) {
         String query = "DELETE FROM products WHERE id = ?";
@@ -63,6 +66,7 @@ public class ProductDaoImpl implements ProductDao {
         }
     }
 
+    //Retrieve all the products
     @Override
     public List<Product> findAll() {
         String query = "SELECT * FROM products";
@@ -78,6 +82,7 @@ public class ProductDaoImpl implements ProductDao {
         return products;
     }
 
+    //Retrieve the product by productid
     @Override
     public Product findById(int productId) {
         String query = "SELECT * FROM products WHERE id = ?";
@@ -95,6 +100,7 @@ public class ProductDaoImpl implements ProductDao {
         }
     }
 
+    // Map the result set row to a Product object
     private Product mapRowToProduct(ResultSet rs) throws SQLException {
         Product product = new Product();
         product.setId(rs.getInt("id"));

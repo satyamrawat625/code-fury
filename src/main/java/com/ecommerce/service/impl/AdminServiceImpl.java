@@ -19,60 +19,67 @@ public class AdminServiceImpl implements AdminService {
 
     public AdminServiceImpl() {
         adminDao = StorageFactory.getAdminDao();
+        productDao = StorageFactory.getProductDao();
+        subscriptionDao = StorageFactory.getSubscriptionDao();
     }
 
-
-
+    // Registers a new admin
     @Override
     public Admin registerAdmin(Admin admin) {
         return adminDao.save(admin);
     }
 
+    // Logs in an admin with given credentials
     @Override
     public Admin loginAdmin(String email, String password, int adminId) {
         return adminDao.checkLogin(email, password, adminId);
     }
 
+    // Adds a new product
     @Override
     public void addProduct(Product product) {
         productDao.save(product);
     }
 
+    // Updates an existing product
     @Override
     public void updateProduct(Product product) {
         productDao.update(product);
     }
 
+    // Deletes a product by ID
     @Override
     public void deleteProduct(int productId) {
         productDao.delete(productId);
     }
 
+    // Adds a new subscription
     @Override
     public Subscription addSubscription(Subscription subscription) {
         return subscriptionDao.save(subscription);
     }
 
+    // Retrieves a list of active subscriptions
     @Override
     public List<Subscription> viewActiveSubscriptions() {
         return subscriptionDao.findActiveSubscriptions();
     }
 
+    // Retrieves a list of inactive subscriptions
     @Override
     public List<Subscription> viewInactiveSubscriptions() {
         return subscriptionDao.findInactiveSubscriptions();
     }
 
+    // Retrieves order history within a date range
     @Override
     public void getOrderHistory(Date startDate, Date endDate) {
-        adminDao.getOrderHistory(startDate,endDate);
-
+        adminDao.getOrderHistory(startDate, endDate);
     }
 
+    // Retrieves the delivery list
     @Override
     public void getDeliveryList() {
         adminDao.getDeliveryList();
     }
-
-
 }
