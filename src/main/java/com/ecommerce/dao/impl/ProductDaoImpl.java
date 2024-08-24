@@ -46,7 +46,7 @@ public class ProductDaoImpl implements ProductDao {
             stmt.setLong(4, product.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new InvalidProductException("The Product details could not be updated");
+            throw new ProductNotFoundException("The Product details could not be updated");
         }
     }
 
@@ -57,7 +57,7 @@ public class ProductDaoImpl implements ProductDao {
             stmt.setLong(1, productId);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new InvalidProductException("Error deleting product");
+            throw new ProductNotFoundException("Error deleting product");
         }
     }
 
@@ -71,7 +71,7 @@ public class ProductDaoImpl implements ProductDao {
                 products.add(mapRowToProduct(rs));
             }
         } catch (SQLException e) {
-            throw new InvalidProductException("Error finding all products");
+            throw new ProductNotFoundException("Error finding all products");
         }
         return products;
     }

@@ -1,7 +1,7 @@
 package com.ecommerce.dao.impl;
 
 import com.ecommerce.dao.SubscriptionDao;
-import com.ecommerce.exception.InvalidSubscriptionException;
+import com.ecommerce.exception.SubscriptionNotFoundException;
 import com.ecommerce.exception.SubscriptionAlreadyExistsException;
 import com.ecommerce.exception.SubscriptionNotFoundException;
 import com.ecommerce.model.Customer;
@@ -92,7 +92,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
                 subscriptions.add(mapRowToSubscription(rs));
             }
         } catch (SQLException e) {
-            throw new InvalidSubscriptionException("Error finding active subscriptions");
+            throw new SubscriptionNotFoundException("Error finding active subscriptions");
         }
         return subscriptions;
     }
@@ -107,7 +107,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
                 subscriptions.add(mapRowToSubscription(rs));
             }
         } catch (SQLException e) {
-            throw new InvalidSubscriptionException("Error finding inactive subscriptions");
+            throw new SubscriptionNotFoundException("Error finding inactive subscriptions");
         }
         return subscriptions;
     }
@@ -119,7 +119,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
             stmt.setLong(1, subscriptionId);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new InvalidSubscriptionException("Error deactivating subscription");
+            throw new SubscriptionNotFoundException("Error deactivating subscription");
         }
     }
 
@@ -130,7 +130,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
             stmt.setLong(1, subscriptionId);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new InvalidSubscriptionException("Error activating subscription");
+            throw new SubscriptionNotFoundException("Error activating subscription");
         }
     }
 
