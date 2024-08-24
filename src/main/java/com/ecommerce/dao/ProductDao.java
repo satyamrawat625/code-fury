@@ -8,10 +8,10 @@ public interface ProductDao {
 
     void update(Product product);
 
-    void delete(Long productId);
+    void delete(int productId);
 
     List<Product> findAll();
 
-    Product findById(Long productId);
+    Product findById(int productId);
 
 }

@@ -2,7 +2,7 @@ package com.ecommerce.dao.impl;
 
 import com.ecommerce.dao.ProductDao;
 import com.ecommerce.exception.DataAccessException;
-import com.ecommerce.exception.InvalidProductException;
+import com.ecommerce.exception.ProductNotFoundException;
 import com.ecommerce.exception.ProductNotFoundException;
 import com.ecommerce.model.Product;
 
@@ -29,8 +29,9 @@ public class ProductDaoImpl implements ProductDao {
 
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             if (generatedKeys.next()) {
-                product.setId(generatedKeys.getLong(1));
+                product.setId(generatedKeys.getInt(1));
             }
+            System.out.println("Product saved successfully with ID: " + product.getId());
         } catch (SQLException e) {
             throw new RuntimeException("Error saving product", e);
         }
@@ -43,18 +44,19 @@ public class ProductDaoImpl implements ProductDao {
             stmt.setString(1, product.getName());
             stmt.setString(2, product.getDescription());
             stmt.setDouble(3, product.getPrice());
-            stmt.setLong(4, product.getId());
+            stmt.setInt(4, product.getId());
             stmt.executeUpdate();
+            System.out.println("Product updated successfully");
         } catch (SQLException e) {
             throw new ProductNotFoundException("The Product details could not be updated");
         }
     }
 
     @Override
-    public void delete(Long productId) {
+    public void delete(int productId) {
         String query = "DELETE FROM products WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setLong(1, productId);
+            stmt.setInt(1, productId);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new ProductNotFoundException("Error deleting product");
@@ -77,10 +79,10 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Product findById(Long productId) {
+    public Product findById(int productId) {
         String query = "SELECT * FROM products WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setLong(1, productId);
+            stmt.setInt(1, productId);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return mapRowToProduct(rs);
@@ -95,7 +97,7 @@ public class ProductDaoImpl implements ProductDao {
 
     private Product mapRowToProduct(ResultSet rs) throws SQLException {
         Product product = new Product();
-        product.setId(rs.getLong("id"));
+        product.setId(rs.getInt("id"));
         product.setName(rs.getString("name"));
         product.setDescription(rs.getString("description"));
         product.setPrice(rs.getDouble("price"));

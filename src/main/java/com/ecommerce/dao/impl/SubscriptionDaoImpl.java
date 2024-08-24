@@ -20,7 +20,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
         this.connection = connection;
     }
 
-    public Subscription findById(Long id) throws SQLException {
+    public Subscription findById(int id) throws SQLException {
         String query = "SELECT s.id AS sub_id, s.frequency, s.is_active, " +
                 "c.id AS customer_id, c.name AS customer_name, c.email, " +
                 "p.id AS product_id, p.name AS product_name, p.description, p.price " +
@@ -29,22 +29,22 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
                 "JOIN products p ON s.product_id = p.id " +
                 "WHERE s.id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setLong(1, id);
+            stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     Subscription subscription = new Subscription();
-                    subscription.setId(rs.getLong("sub_id"));
+                    subscription.setId(rs.getInt("sub_id"));
                     subscription.setFrequency(rs.getString("frequency"));
                     subscription.setActive(rs.getBoolean("is_active"));
 
                     Customer customer = new Customer();
-                    customer.setId(rs.getLong("customer_id"));
+                    customer.setId(rs.getInt("customer_id"));
                     customer.setName(rs.getString("customer_name"));
                     customer.setEmail(rs.getString("email"));
                     subscription.setCustomer(customer);
 
                     Product product = new Product();
-                    product.setId(rs.getLong("product_id"));
+                    product.setId(rs.getInt("product_id"));
                     product.setName(rs.getString("product_name"));
                     product.setDescription(rs.getString("description"));
                     product.setPrice(rs.getDouble("price"));
@@ -62,15 +62,15 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
     public Subscription save(Subscription subscription) {
         String query = "INSERT INTO subscriptions (customer_id, product_id, frequency, is_active) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setLong(1, subscription.getCustomer().getId());
-            stmt.setLong(2, subscription.getProduct().getId());
+            stmt.setInt(1, subscription.getCustomer().getId());
+            stmt.setInt(2, subscription.getProduct().getId());
             stmt.setString(3, subscription.getFrequency());
             stmt.setBoolean(4, subscription.isActive());
             stmt.executeUpdate();
 
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             if (generatedKeys.next()) {
-                subscription.setId(generatedKeys.getLong(1));
+                subscription.setId(generatedKeys.getInt(1));
             }
         } catch (SQLException e) {
             try {
@@ -113,10 +113,10 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
     }
 
     @Override
-    public void deactivate(Long subscriptionId) {
+    public void deactivate(int subscriptionId) {
         String query = "UPDATE subscriptions SET is_active = false WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setLong(1, subscriptionId);
+            stmt.setInt(1, subscriptionId);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new SubscriptionNotFoundException("Error deactivating subscription");
@@ -124,10 +124,10 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
     }
 
     @Override
-    public void activate(Long subscriptionId) {
+    public void activate(int subscriptionId) {
         String query = "UPDATE subscriptions SET is_active = true WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setLong(1, subscriptionId);
+            stmt.setInt(1, subscriptionId);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new SubscriptionNotFoundException("Error activating subscription");
@@ -136,7 +136,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
 
     private Subscription mapRowToSubscription(ResultSet rs) throws SQLException {
         Subscription subscription = new Subscription();
-        subscription.setId(rs.getLong("id"));
+        subscription.setId(rs.getInt("id"));
         // Assuming Customer and Product objects will be fetched and set separately
         subscription.setFrequency(rs.getString("frequency"));
         subscription.setActive(rs.getBoolean("is_active"));

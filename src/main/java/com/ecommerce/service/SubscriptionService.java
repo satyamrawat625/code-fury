@@ -8,10 +8,10 @@ public interface SubscriptionService {
 
     List<Subscription> getInactiveSubscriptions();
 
-    void deactivateSubscription(Long subscriptionId);
+    void deactivateSubscription(int subscriptionId);
 
-    void activateSubscription(Long subscriptionId);
+    void activateSubscription(int subscriptionId);
 
-    Subscription subscribeProduct(Long customerId, Long productId, String frequency);
+    Subscription subscribeProduct(int customerId, int productId, String frequency);
 
 }

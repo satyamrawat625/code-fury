@@ -34,16 +34,16 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
-    public void deactivateSubscription(Long subscriptionId) {
+    public void deactivateSubscription(int subscriptionId) {
         subscriptionDao.deactivate(subscriptionId);
     }
 
     @Override
-    public void activateSubscription(Long subscriptionId) {
+    public void activateSubscription(int subscriptionId) {
         subscriptionDao.activate(subscriptionId);
     }
     @Override
-    public Subscription subscribeProduct(Long customerId, Long productId, String frequency) {
+    public Subscription subscribeProduct(int customerId, int productId, String frequency) {
         Customer customer = customerDao.findById(customerId);
         Product product = productDao.findById(productId);
         Subscription subscription = new Subscription();

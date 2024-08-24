@@ -1,7 +1,7 @@
 package com.ecommerce.model;
 
 public class Product {
-    private Long id;
+    private int id;
     private String name;
     private String description;
     private double price;
@@ -10,7 +10,7 @@ public class Product {
     // Constructors, Getters and Setters
     public Product() {}
 
-    public Product(Long id, String name, String description, double price, boolean isAvailable) {
+    public Product(int id, String name, String description, double price, boolean isAvailable) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -18,11 +18,11 @@ public class Product {
         this.isAvailable = isAvailable;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

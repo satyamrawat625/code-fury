@@ -19,19 +19,16 @@ public class App {
             SubscriptionService subscriptionService = new SubscriptionServiceImpl();
 
             // Adding a customer
-            Customer customer = new Customer();
-            customer.setName("Vikas Singh");
-            customer.setEmail("987.s345ingh@gmail.com");
-            customer.setPassword("hc1234");
+            Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234","Pune","1234567890");
             customerService.registerCustomer(customer);
 
-            customerService.activateSubscription(10L);
-            customerService.deactivateSubsciption(10L);
+            customerService.activateSubscription(10);
+            customerService.deactivateSubsciption(10);
             boolean status=customerService.placeOrder(1,"21-08-2024","23-08-2024","PENDING",20,21);
 
 
             // Adding a product
-            Product product = new Product(1L,"Coffee","Coffee from CCD",30,true);
+            Product product = new Product(1,"Coffee","Coffee from CCD",30,true);
             productService.addProduct(product);
 
             // Subscribing to a product
@@ -40,7 +37,7 @@ public class App {
 //            subscription.setProduct(product);
 //            subscription.setFrequency("biweekly");
 //            subscription.setActive(true);
-            subscriptionService.activateSubscription(10L);
+            subscriptionService.activateSubscription(10);
 
             // Finding a subscription by ID
 //            Subscription foundSubscription = subscriptionService.getSubscriptionById(subscription.getId());

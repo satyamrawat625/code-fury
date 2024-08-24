@@ -10,12 +10,12 @@ public interface SubscriptionDao {
 
     List<Subscription> findInactiveSubscriptions();
 
-    void deactivate(Long subscriptionId);
+    void deactivate(int subscriptionId);
 
-    void activate(Long subscriptionId);
+    void activate(int subscriptionId);
 
     Subscription save(Subscription subscription);
 
-    Subscription findById(Long subscriptionId) throws SQLException;
+    Subscription findById(int subscriptionId) throws SQLException;
 
 }

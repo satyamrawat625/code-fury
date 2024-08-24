@@ -3,7 +3,7 @@ package com.ecommerce.model;
 import java.util.Date;
 
 public class Subscription {
-    private Long id;
+    private int id;
     private Customer customer;
     private Product product;
     private String frequency; // "weekly", "bi-weekly", "monthly"
@@ -14,7 +14,7 @@ public class Subscription {
     // Constructors, Getters and Setters
     public Subscription() {}
 
-    public Subscription(Long id, Customer customer, Product product, String frequency, Date startDate, Date endDate, boolean isActive) {
+    public Subscription(int id, Customer customer, Product product, String frequency, Date startDate, Date endDate, boolean isActive) {
         this.id = id;
         this.customer = customer;
         this.product = product;
@@ -24,11 +24,11 @@ public class Subscription {
         this.isActive = isActive;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

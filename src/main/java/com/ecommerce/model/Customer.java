@@ -1,55 +1,42 @@
 package com.ecommerce.model;
 
-public class Customer {
-    private Long id;
-    private String name;
-    private String email;
-    private String password;
+public class Customer extends User {
+    private String address;
+    private String phoneNumber;
 
-    // Constructors, Getters and Setters
-    public Customer() {}
-
-    public Customer(Long id, String name, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
+    public Customer() {
+        super();
+        address="";
+        phoneNumber = "";
     }
 
-    public Long getId() {
-        return id;
+    public Customer(String name, String email, String password, String address, String phoneNumber) {
+        super( name, email, password);
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getAddress() {
+        return address;
     }
 
-    public String getName() {
-        return name;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
     public String toString() {
-        return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
+        return "Customer{" + super.toString() +
+                "address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }

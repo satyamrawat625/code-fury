@@ -18,28 +18,31 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Customer save(Customer customer) {
-        String query = "INSERT INTO customers (name, email, password) VALUES (?, ?, ?)";
+        String query = "INSERT INTO customers (name, email, password,address,phoneNumber) VALUES (?, ?, ?,?,?)";
         try (PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, customer.getName());
             stmt.setString(2, customer.getEmail());
             stmt.setString(3, customer.getPassword());
+            stmt.setString(4, customer.getAddress());
+            stmt.setString(5, customer.getPhoneNumber());
             stmt.executeUpdate();
 
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             if (generatedKeys.next()) {
-                customer.setId(generatedKeys.getLong(1));
+                customer.setId(generatedKeys.getInt(1));
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error saving customer", e);
         }
+        System.out.println("Register successfully with ID: " + customer.getId());
         return customer;
     }
 
     @Override
-    public Customer findById(Long customerId) {
+    public Customer findById(int customerId) {
         String query = "SELECT * FROM customers WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setLong(1, customerId);
+            stmt.setInt(1, customerId);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return mapRowToCustomer(rs);
@@ -102,10 +105,12 @@ public class CustomerDaoImpl implements CustomerDao {
 
     private Customer mapRowToCustomer(ResultSet rs) throws SQLException {
         Customer customer = new Customer();
-        customer.setId(rs.getLong("id"));
+        customer.setId(rs.getInt("id"));
         customer.setName(rs.getString("name"));
         customer.setEmail(rs.getString("email"));
         customer.setPassword(rs.getString("password"));
+        customer.setAddress(rs.getString("address"));
+        customer.setPhoneNumber(rs.getString("phoneNumber"));
         return customer;
     }
 }

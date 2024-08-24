@@ -29,12 +29,12 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDao.findByEmailAndPassword(email, password);
     }
 
-    public void activateSubscription(long id) {
+    public void activateSubscription(int id) {
         subscriptionDao.activate(id);
     }
 
     @Override
-    public void deactivateSubsciption(long l) {
+    public void deactivateSubsciption(int l) {
         subscriptionDao.deactivate(l);
     }
 

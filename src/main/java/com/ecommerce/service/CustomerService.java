@@ -7,9 +7,9 @@ public interface CustomerService {
 
     Customer loginCustomer(String email, String password);
 
-    public void activateSubscription(long id);
+    public void activateSubscription(int id);
 
-    void deactivateSubsciption(long l);
+    void deactivateSubsciption(int l);
 
     boolean placeOrder(int i, String s, String s1, String pending, int i1, int i2);
 }

@@ -13,7 +13,7 @@ public class DBUtil {
                 DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
                 String url = "jdbc:mysql://localhost:3306/ecommerce_db";
 
-                conn = DriverManager.getConnection(url, "root", "Paramarora09@");
+                conn = DriverManager.getConnection(url, "root", "root@123");
             }
             return conn;
         } catch (SQLException throwables) {
