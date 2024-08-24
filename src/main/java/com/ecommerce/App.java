@@ -19,10 +19,7 @@ public class App {
             SubscriptionService subscriptionService = new SubscriptionServiceImpl();
 
             // Adding a customer
-            Customer customer = new Customer();
-            customer.setName("Vikas Singh");
-            customer.setEmail("987.s345ingh@gmail.com");
-            customer.setPassword("hc1234");
+            Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234","Pune","1234567890");
             customerService.registerCustomer(customer);
 
             customerService.activateSubscription(10L);
