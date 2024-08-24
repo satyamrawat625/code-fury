@@ -4,6 +4,7 @@ import com.ecommerce.model.Admin;
 import com.ecommerce.model.Product;
 import com.ecommerce.model.Subscription;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface AdminService {
@@ -15,4 +16,8 @@ public interface AdminService {
     Subscription addSubscription(Subscription subscription);
     List<Subscription> viewActiveSubscriptions();
     List<Subscription> viewInactiveSubscriptions();
+
+    void getOrderHistory(Date startDate, Date endDate);
+
+    void getDeliveryList();
 }

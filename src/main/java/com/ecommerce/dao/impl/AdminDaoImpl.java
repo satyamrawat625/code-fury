@@ -8,6 +8,9 @@ import com.ecommerce.model.Admin;
 import com.ecommerce.model.Customer;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +60,75 @@ public class AdminDaoImpl implements AdminDao {
         }
         return null;
     }
+
+    @Override
+    public void getOrderHistory(Date startDate, Date endDate) {
+        String query = "SELECT * FROM Orders WHERE delivery_date BETWEEN ? AND ?";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            // Set the start and end dates in the query
+            stmt.setString(1, dateFormat.format(startDate));
+            stmt.setString(2, dateFormat.format(endDate));
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                // Print out the column headers
+                System.out.printf("%-10s %-20s %-20s %-10s %-15s %-15s%n",
+                        "Order ID", "Order Date", "Delivery Date", "Status", "Customer ID", "Product ID");
+
+                // Loop through the result set and print each row
+                while (rs.next()) {
+                    int orderId = rs.getInt("order_id");
+                    Date orderDate = rs.getDate("order_date");
+                    Date deliveryDate = rs.getDate("delivery_date");
+                    String status = rs.getString("status");
+                    int customerId = rs.getInt("customer_id");
+                    int productId = rs.getInt("product_id");
+
+                    System.out.printf("%-10d %-20s %-20s %-10s %-15d %-15d%n",
+                            orderId, orderDate.toString(), deliveryDate.toString(), status, customerId, productId);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void getDeliveryList() {
+        String query = "SELECT * FROM Orders WHERE delivery_date = ?";
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            // Set the current date in the query
+            stmt.setString(1, currentDate.format(dateFormat));
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                // Print out the column headers
+                System.out.printf("%-10s %-20s %-20s %-10s %-15s %-15s%n",
+                        "Order ID", "Order Date", "Delivery Date", "Status", "Customer ID", "Product ID");
+
+                // Loop through the result set and print each row
+                while (rs.next()) {
+                    int orderId = rs.getInt("order_id");
+                    Date orderDate = rs.getDate("order_date");
+                    Date deliveryDate = rs.getDate("delivery_date");
+                    String status = rs.getString("status");
+                    int customerId = rs.getInt("customer_id");
+                    int productId = rs.getInt("product_id");
+
+                    System.out.printf("%-10d %-20s %-20s %-10s %-15d %-15d%n",
+                            orderId, orderDate.toString(), deliveryDate.toString(), status, customerId, productId);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private Admin mapRowToAdmin(ResultSet rs) throws SQLException {
         Admin admin= new Admin();

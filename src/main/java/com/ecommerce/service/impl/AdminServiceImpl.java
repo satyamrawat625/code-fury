@@ -5,11 +5,11 @@ import com.ecommerce.dao.ProductDao;
 import com.ecommerce.dao.SubscriptionDao;
 import com.ecommerce.factory.StorageFactory;
 import com.ecommerce.model.Admin;
-import com.ecommerce.model.Customer;
 import com.ecommerce.model.Product;
 import com.ecommerce.model.Subscription;
 import com.ecommerce.service.AdminService;
 
+import java.sql.Date;
 import java.util.List;
 
 public class AdminServiceImpl implements AdminService {
@@ -61,6 +61,17 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Subscription> viewInactiveSubscriptions() {
         return subscriptionDao.findInactiveSubscriptions();
+    }
+
+    @Override
+    public void getOrderHistory(Date startDate, Date endDate) {
+        adminDao.getOrderHistory(startDate,endDate);
+
+    }
+
+    @Override
+    public void getDeliveryList() {
+        adminDao.getDeliveryList();
     }
 
 
