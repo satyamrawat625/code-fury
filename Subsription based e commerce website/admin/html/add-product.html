@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="../css/add-product-style.css">
+    <script defer src="../js/add-product.js"></script>
+</head>
+
+<body>
+    <div class="form-container">
+        <nav class="sidebar">
+
+            <h1>Add New Product</h1>
+            <form id="productForm">
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" id="productName" name="productName" placeholder="Enter product name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" placeholder="Enter product description"
+                        required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price (₹)</label>
+                    <input type="number" id="price" name="price" placeholder="Enter product price" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity </label>
+                    <input type="number" id="quantity" name="quantity" placeholder="Enter quantity" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subscriptionOptions">Subscription Options</label>
+                    <button type="button" id="addSubscription" class="add-subscription-btn">+ Add Subscription</button>
+                    <div id="subscriptionsContainer"></div>
+                </div>
+
+                <button type="submit">Add Product</button>
+            </form>
+    </div>
+</body>
+
+</html>
