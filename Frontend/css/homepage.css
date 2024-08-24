@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.hero-section {
+    background-color: #bdcda5;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+}
+
+.feature-section {
+    padding: 10px 20px;
+    background-color: white;
+}
+
+.feature-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.feature-box {
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(232, 228, 228);
+    text-align: center;
+    transition: box-shadow 0.3s;
+}
+
+.feature-box:hover {
+    box-shadow: 10px 14px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature-box h4 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.cta-section {
+    background-color: #98ae78;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.cta-section h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.cta-section .btn-primary {
+    background-color: #ece2c5;
+    border: none;
+    font-size: 1.1rem;
+    padding: 12px 10px;
+}
+
+.cta-section .btn-primary:hover {
+    background-color: #ebd79c;
+}
+
+footer {
+    background-color: #3b3939;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}

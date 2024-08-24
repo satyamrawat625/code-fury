@@ -65,6 +65,11 @@ CREATE TABLE admin (
     PRIMARY KEY (id)
 );
 
+--initialize admin table
+INSERT INTO admin (name, email, password, adminId, adminRole) VALUES
+('Arjun Mehta', 'arjun.mehta@example.com', '5f4dcc3b5aa765d61d8327deb882cf99', 101, 'SuperAdmin'),
+('Vikram Desai', 'vikram.desai@example.com', '25f9e794323b453885f5181f1b624d0b', 105, 'SuperAdmin');
+
 -- Create Orders table
 CREATE TABLE Orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -76,3 +81,10 @@ CREATE TABLE Orders (
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
     FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
+-- Initialize the orders table
+INSERT INTO Orders (order_date, delivery_date, status, customer_id, product_id) VALUES
+('2024-08-21', '2024-08-23', 'PENDING', 1, 1),
+('2024-08-22', '2024-08-24', 'SHIPPED', 2, 3),
+('2024-08-20', '2024-08-22', 'DELIVERED', 3, 5),
+('2024-08-19', '2024-08-21', 'CANCELLED', 4, 2),
+('2024-08-23', '2024-08-25', 'PENDING', 5, 4);
