@@ -1,8 +1,10 @@
 package com.ecommerce.factory;
 
+import com.ecommerce.dao.AdminDao;
 import com.ecommerce.dao.CustomerDao;
 import com.ecommerce.dao.ProductDao;
 import com.ecommerce.dao.SubscriptionDao;
+import com.ecommerce.dao.impl.AdminDaoImpl;
 import com.ecommerce.dao.impl.CustomerDaoImpl;
 import com.ecommerce.dao.impl.ProductDaoImpl;
 import com.ecommerce.dao.impl.SubscriptionDaoImpl;
@@ -23,6 +25,12 @@ public class StorageFactory {
         Connection connection = DBUtil.getConnection();
         return new ProductDaoImpl(connection);
     }
+
+    public static AdminDao getAdminDao() {
+        Connection connection = DBUtil.getConnection();
+        return new AdminDaoImpl(connection);
+    }
+
 
     public static SubscriptionDao getSubscriptionDao() {
         Connection connection = DBUtil.getConnection();
