@@ -31,6 +31,7 @@ public class ProductDaoImpl implements ProductDao {
             if (generatedKeys.next()) {
                 product.setId(generatedKeys.getLong(1));
             }
+            System.out.println("Product saved successfully with ID: " + product.getId());
         } catch (SQLException e) {
             throw new RuntimeException("Error saving product", e);
         }
@@ -45,6 +46,7 @@ public class ProductDaoImpl implements ProductDao {
             stmt.setDouble(3, product.getPrice());
             stmt.setLong(4, product.getId());
             stmt.executeUpdate();
+            System.out.println("Product updated successfully");
         } catch (SQLException e) {
             throw new InvalidProductException("The Product details could not be updated");
         }
