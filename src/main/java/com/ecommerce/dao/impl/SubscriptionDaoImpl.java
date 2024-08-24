@@ -74,7 +74,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
             }
         } catch (SQLException e) {
             try {
-                throw new SubscriptionAlreadyExistsException("Error saving subscription");
+                throw new SubscriptionAlreadyExistsException("Error saving subscription, check if customerId and productId are valid");
             } catch (SubscriptionAlreadyExistsException ex) {
                 throw new RuntimeException(ex);
             }
@@ -92,7 +92,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
                 subscriptions.add(mapRowToSubscription(rs));
             }
         } catch (SQLException e) {
-            throw new SubscriptionNotFoundException("Error finding active subscriptions");
+            throw new SubscriptionNotFoundException("Error finding active subscriptions, please retry");
         }
         return subscriptions;
     }
@@ -107,7 +107,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
                 subscriptions.add(mapRowToSubscription(rs));
             }
         } catch (SQLException e) {
-            throw new SubscriptionNotFoundException("Error finding inactive subscriptions");
+            throw new SubscriptionNotFoundException("Error finding inactive subscriptions, please retry");
         }
         return subscriptions;
     }
@@ -119,7 +119,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
             stmt.setInt(1, subscriptionId);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new SubscriptionNotFoundException("Error deactivating subscription");
+            throw new SubscriptionNotFoundException("Subscription with" + subscriptionId + "not found");
         }
     }
 
@@ -130,7 +130,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
             stmt.setInt(1, subscriptionId);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new SubscriptionNotFoundException("Error activating subscription");
+            throw new SubscriptionNotFoundException("Subscription with" + subscriptionId + "not found");
         }
     }
 

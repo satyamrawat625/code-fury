@@ -33,7 +33,7 @@ public class ProductDaoImpl implements ProductDao {
             }
             System.out.println("Product saved successfully with ID: " + product.getId());
         } catch (SQLException e) {
-            throw new RuntimeException("Error saving product", e);
+            throw new RuntimeException("Product with ID: " + product.getId() + " already exists");
         }
     }
 
@@ -48,7 +48,7 @@ public class ProductDaoImpl implements ProductDao {
             stmt.executeUpdate();
             System.out.println("Product updated successfully");
         } catch (SQLException e) {
-            throw new ProductNotFoundException("The Product details could not be updated");
+            throw new ProductNotFoundException("Product with product id" + product.getId() + " not found");
         }
     }
 
@@ -59,7 +59,7 @@ public class ProductDaoImpl implements ProductDao {
             stmt.setInt(1, productId);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new ProductNotFoundException("Error deleting product");
+            throw new ProductNotFoundException("Product with product id" + product.getId() + " not found");
         }
     }
 
@@ -73,7 +73,7 @@ public class ProductDaoImpl implements ProductDao {
                 products.add(mapRowToProduct(rs));
             }
         } catch (SQLException e) {
-            throw new ProductNotFoundException("Error finding all products");
+            throw new ProductNotFoundException("Error finding all products, please try again");
         }
         return products;
     }
@@ -91,7 +91,7 @@ public class ProductDaoImpl implements ProductDao {
                 throw new ProductNotFoundException("Product with ID " + productId + " not found.");
             }
         } catch (SQLException e) {
-            throw new DataAccessException("Error accessing product data", e);
+            throw new ProductNotFoundException("Product with product id" + productId + " not found");
         }
     }
 

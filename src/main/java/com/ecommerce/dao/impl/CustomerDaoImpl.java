@@ -97,7 +97,7 @@ public class CustomerDaoImpl implements CustomerDao {
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Error saving customer", e);
+            throw new RuntimeException("Error saving customer, please check order details and retry", e);
         }
         return false;
     }
