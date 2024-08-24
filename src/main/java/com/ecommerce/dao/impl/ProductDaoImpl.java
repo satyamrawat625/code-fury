@@ -59,7 +59,7 @@ public class ProductDaoImpl implements ProductDao {
             stmt.setInt(1, productId);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new ProductNotFoundException("Product with product id" + product.getId() + " not found");
+            throw new ProductNotFoundException("Product with product id" + productId + " not found");
         }
     }
 
