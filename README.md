@@ -1,7 +1,5 @@
-Here's an updated `README.md` that includes instructions for running the frontend:
-
 ```markdown
-# E-Commerce Platform Backend & Frontend
+# BigCart Platform Backend & Frontend
 
 This is a full-stack e-commerce subscription platform. The backend is developed in Java, while the frontend consists of HTML, CSS, and JavaScript.
 
