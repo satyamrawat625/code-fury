@@ -94,5 +94,3 @@ Alternatively, you can open the `index.html` file directly from your file explor
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ```
-
-This `README.md` now includes instructions for both the backend setup and how to run the frontend by opening the `index.html` file in a browser.
