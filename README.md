@@ -1,15 +1,26 @@
 ```markdown
 # BigCart Platform Backend & Frontend
 
-This is a full-stack e-commerce subscription platform. The backend is developed in Java, while the frontend consists of HTML, CSS, and JavaScript.
+This is a full-stack e-commerce subscription platform. The frontend is built with HTML, CSS, JavaScript, and Bootstrap, while the backend is developed in Java. The database used is MySQL, and testing is performed using JUnit.
 
 ## Project Structure
 
-- **src/**: Contains the Java source code.
-- **frontend/**: Contains the frontend files:
-  - **HTML/**: HTML files for the web pages.
-  - **CSS/**: Stylesheets for the web pages.
-  - **JS/**: JavaScript files for client-side logic.
+- **Backend/**: Contains the backend code organized into the following packages:
+  - **dao/**: Data Access Objects (DAO) responsible for interacting with the database.
+  - **exception/**: Custom exceptions used across the application for error handling.
+  - **factory/**: Factory classes for creating instances of services, DAOs, and other components.
+  - **model/**: POJOs (Plain Old Java Objects) representing the data models used in the application.
+  - **service/**: Service classes containing the business logic of the application.
+  - **testing/**: Unit tests and integration tests to ensure the functionality of the backend code.
+- **Frontend/**: Contains the frontend files:
+  - **admin/**: Module for admin users to manage the platform.
+    - **HTML/**: HTML files for the admin web pages.
+    - **CSS/**: Stylesheets for the admin web pages.
+    - **JS/**: JavaScript files for client-side logic specific to the admin module.
+  - **customer/**: Module for customers to browse products, manage subscriptions, and more.
+    - **HTML/**: HTML files for the customer web pages.
+    - **CSS/**: Stylesheets for the customer web pages.
+    - **JS/**: JavaScript files for client-side logic specific to the customer module.
 - **codeToExecuteSQLFiles.java**: A Java program to initialize the database by executing the required SQL code.
 - **README.md**: Project documentation.
 
@@ -65,7 +76,7 @@ This will execute the SQL code required to set up the database schema.
 After the database has been initialized, you can compile and run the rest of the backend code. The backend will interact with the database using JDBC.
 
 ```bash
-javac -d bin src/**/*.java
+javac -d bin Backend/src/**/*.java
 java -cp bin com.ecommerce.App
 ```
 
@@ -73,11 +84,11 @@ java -cp bin com.ecommerce.App
 
 To view the frontend of the application:
 
-1. Navigate to the `frontend` directory in your project.
+1. Navigate to the `frontend/customer` directory in your project.
 2. Open the `index.html` file in any modern web browser.
 
 ```bash
-cd frontend
+cd frontend/customer
 open index.html
 ```
 
