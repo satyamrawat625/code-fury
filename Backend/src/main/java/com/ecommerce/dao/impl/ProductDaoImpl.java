@@ -21,11 +21,12 @@ public class ProductDaoImpl implements ProductDao {
     // Saves a new product to the database
     @Override
     public void save(Product product) {
-        String query = "INSERT INTO products (name, description, price) VALUES (?, ?, ?)";
+        String query = "INSERT INTO products (name, description, price,isavailabel) VALUES (?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, product.getName());
             stmt.setString(2, product.getDescription());
             stmt.setDouble(3, product.getPrice());
+            stmt.setBoolean(4, product.isAvailable());
             stmt.executeUpdate();
 
             ResultSet generatedKeys = stmt.getGeneratedKeys();

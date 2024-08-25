@@ -4,16 +4,18 @@ CREATE TABLE customers (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    address VARCHAR(255),
+    phone VARCHAR(15),
     PRIMARY KEY (id)
 );
 
 -- Initialize customers table
-INSERT INTO customers (name, email, password) VALUES
-('Amit Sharma', 'amit.sharma@example.com', 'e99a18c428cb38d5f260853678922e03'),
-('Priya Singh', 'priya.singh@example.com', '098f6bcd4621d373cade4e832627b4f6'),
-('Ravi Kumar', 'ravi.kumar@example.com', '5f4dcc3b5aa765d61d8327deb882cf99'),
-('Sneha Verma', 'sneha.verma@example.com', '202cb962ac59075b964b07152d234b70'),
-('Ankit Mehta', 'ankit.mehta@example.com', '25f9e794323b453885f5181f1b624d0b');
+INSERT INTO customers (name, email, password,address,phone) VALUES
+('Amit Sharma', 'amit.sharma@example.com', 'e99a18c428cb38d5f260853678922e03','Delhi','9876543210'),
+('Priya Singh', 'priya.singh@example.com', '098f6bcd4621d373cade4e832627b4f6','Mumbai','9999999910'),
+('Ravi Kumar', 'ravi.kumar@example.com', '5f4dcc3b5aa765d61d8327deb882cf99','Kolkata','9776523220'),
+('Sneha Verma', 'sneha.verma@example.com', '202cb962ac59075b964b07152d234b70','Chennai','9877432102'),
+('Ankit Mehta', 'ankit.mehta@example.com', '25f9e794323b453885f5181f1b624d0b','Pune','98887775555');
 
 --  Create products table
 CREATE TABLE products (
@@ -21,16 +23,17 @@ CREATE TABLE products (
     name VARCHAR(100) NOT NULL,
     description TEXT,
     price DECIMAL(10,2) NOT NULL,
+    isavailabel BOOLEAN,
     PRIMARY KEY (id)
 );
 
 -- Initialize products table
 INSERT INTO products (name, description, price) VALUES
-('Coffee', 'Premium quality coffee beans', 299.99),
-('Tea', 'Assorted tea leaves', 149.50),
-('Biscuits', 'Assorted biscuits pack', 89.75),
-('Chocolates', 'Mixed chocolates gift pack', 499.00),
-('Noodles', 'Instant noodles pack', 59.99);
+('Coffee', 'Premium quality coffee beans', 299.99,1),
+('Tea', 'Assorted tea leaves', 149.50,0),
+('Biscuits', 'Assorted biscuits pack', 89.75,1),
+('Chocolates', 'Mixed chocolates gift pack', 499.00,1),
+('Noodles', 'Instant noodles pack', 59.99,0);
 
 
 -- Create subscriptions table
