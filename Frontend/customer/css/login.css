@@ -1,0 +1,98 @@
+
+body {
+    background: lightgray;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.card {
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    background-color: rgb(209, 234, 246);
+}
+
+.card-body {
+    display: flex;
+    align-items: center;
+}
+
+.left-content {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.right-content {
+    flex: 1;
+}
+
+.form-control {
+    background: rgba(200, 231, 219, 0.7);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: none;
+}
+
+.btn-primary {
+    background-color: #e4e8de;
+    border: none;
+    padding: 0.75rem 2.5rem;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #aeb1a3;
+}
+
+.social-buttons .btn {
+    background: rgba(241, 244, 245, 0.86);
+    border-radius: 50%;
+    color: #576444;
+    margin-left: 3rem;
+    margin-right: 4rem;
+    transition: background 0.3s ease;
+}
+
+.social-buttons .btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+    color: #666;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ccc;
+    margin: 0 1rem;
+}
+
+.form-check-label,
+.link-danger,
+.text-body {
+    color: #576444;
+}
+
+.text-body:hover,
+.link-danger:hover {
+    color: #aeb1a3;
+}
