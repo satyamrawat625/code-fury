@@ -76,7 +76,7 @@ This will execute the SQL code required to set up the database schema.
 After the database has been initialized, you can compile and run the rest of the backend code. The backend will interact with the database using JDBC.
 
 ```bash
-javac -d bin Backend/src/**/*.java
+javac -d bin application/Backend/src/**/*.java
 java -cp bin com.ecommerce.App
 ```
 
@@ -84,11 +84,11 @@ java -cp bin com.ecommerce.App
 
 To view the frontend of the application:
 
-1. Navigate to the `frontend/customer` directory in your project.
+1. Navigate to the `application/frontend/customer` directory in your project.
 2. Open the `index.html` file in any modern web browser.
 
 ```bash
-cd frontend/customer
+cd application/frontend/customer
 open index.html
 ```
 
