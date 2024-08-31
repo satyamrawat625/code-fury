@@ -3,6 +3,7 @@ package com.ecommerce.service;
 import com.ecommerce.model.Customer;
 import com.ecommerce.model.Product;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface CustomerService {
@@ -14,7 +15,7 @@ public interface CustomerService {
 
     void deactivateSubsciption(int l);
 
-    boolean placeOrder(int i, String s, String s1, String pending, int i1, int i2);
+    boolean placeOrder(int i, int qty,String s, String s1, String pending, int i1, int i2) throws SQLException;
 
     Product findProductById(int id);
     List<Product> BrowseProduct();

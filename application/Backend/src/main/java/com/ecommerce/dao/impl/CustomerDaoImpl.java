@@ -2,6 +2,7 @@ package com.ecommerce.dao.impl;
 
 import com.ecommerce.dao.CustomerDao;
 import com.ecommerce.exception.CustomerNotFoundException;
+import com.ecommerce.exception.InsufficientQuantityException;
 import com.ecommerce.model.Customer;
 
 import java.sql.*;
@@ -90,23 +91,50 @@ public class CustomerDaoImpl implements CustomerDao {
 
     // Place a new order for a customer
     @Override
-    public boolean placeOrder(int orderId, String orderDate, String deliveryDate, String status, int customerId, int productId) {
-        String query = "INSERT INTO orders VALUES (?, ?, ?,?,?,?)";
-        try (PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setInt(1, orderId);
-            stmt.setString(2, orderDate);
-            stmt.setString(3, deliveryDate);
-            stmt.setString(4, status);
-            stmt.setInt(5, customerId);
-            stmt.setInt(6, productId);
-            stmt.executeUpdate();
+    public boolean placeOrder(int orderId, int qty, String orderDate, String deliveryDate, String status, int customerId, int productId)
+            throws SQLException, InsufficientQuantityException {
 
-        } catch (SQLException e) {
-            throw new RuntimeException("Error saving customer, please check order details and retry", e);
+        String queryQty = "SELECT qty FROM products WHERE id = ?";
+        String insertOrderQuery = "INSERT INTO orders (orderId, orderDate, deliveryDate, status, customerId, productId, qty) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String updateProductQtyQuery = "UPDATE products SET qty = ? WHERE id = ?";
+
+        try (PreparedStatement stmtQty = connection.prepareStatement(queryQty);
+             PreparedStatement stmtOrder = connection.prepareStatement(insertOrderQuery);
+             PreparedStatement stmtUpdateQty = connection.prepareStatement(updateProductQtyQuery)) {
+
+            // Retrieve the current quantity of the product
+            stmtQty.setInt(1, productId);
+            try (ResultSet rs = stmtQty.executeQuery()) {
+                if (rs.next()) {
+                    int remQty = rs.getInt("qty");
+
+                    // Check if there is enough quantity
+                    if (remQty >= qty) {
+                        // Insert the order
+                        stmtOrder.setInt(1, orderId);
+                        stmtOrder.setString(2, orderDate);
+                        stmtOrder.setString(3, deliveryDate);
+                        stmtOrder.setString(4, status);
+                        stmtOrder.setInt(5, customerId);
+                        stmtOrder.setInt(6, productId);
+                        stmtOrder.setInt(7, qty);
+                        stmtOrder.executeUpdate();
+
+                        // Update the product quantity
+                        stmtUpdateQty.setInt(1, remQty - qty);
+                        stmtUpdateQty.setInt(2, productId);
+                        stmtUpdateQty.executeUpdate();
+
+                        return true;
+                    } else {
+                        throw new InsufficientQuantityException("Insufficient quantity");
+                    }
+                } else {
+                    throw new SQLException("Product not found");
+                }
+            }
         }
-        return false;
     }
-
 
     // Map a ResultSet row to a Customer object
     private Customer mapRowToCustomer(ResultSet rs) throws SQLException {
@@ -119,4 +147,5 @@ public class CustomerDaoImpl implements CustomerDao {
         customer.setPhoneNumber(rs.getString("phoneNumber"));
         return customer;
     }
+
 }

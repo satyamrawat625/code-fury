@@ -1,5 +1,6 @@
 package com.ecommerce.Testing.JunitTesting;
 
+import com.ecommerce.exception.QtyNotValidException;
 import com.ecommerce.model.Admin;
 import com.ecommerce.model.Customer;
 import com.ecommerce.model.Product;
@@ -57,7 +58,7 @@ public class CustomerTestJunit {
     @Test
     void testActivateSubscription()
     {
-        Product product = new Product(1, "Apple", "Fruit", 100, true);
+        Product product = new Product(1, "Apple", "Fruit", 100, true,4);
         Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234","Pune","1234567890");
         LocalDate localStartDate = LocalDate.of(2024, 8, 24);
         LocalDate localEndDate = LocalDate.of(2025, 8, 24);
@@ -75,7 +76,7 @@ public class CustomerTestJunit {
     @Test
     void testdEActivateSubscription()
     {
-        Product product = new Product(1, "Milk", "Food", 100, true);
+        Product product = new Product(1, "Milk", "Food", 100, true,2);
         Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234","Pune","1234567890");
         LocalDate localStartDate = LocalDate.of(2024, 8, 24);
         LocalDate localEndDate = LocalDate.of(2025, 8, 24);
@@ -92,7 +93,7 @@ public class CustomerTestJunit {
     @Test
     void testfindProductById()
     {
-        Product product = new Product(1, "Apple", "Fruit", 100, true);
+        Product product = new Product(1, "Apple", "Fruit", 100, true,2);
         Product product1 = customerServiceimpl.findProductById(1);
         // Validate the results
         assertNotNull(product1, "Product should not be null");
@@ -100,10 +101,9 @@ public class CustomerTestJunit {
 
     //Test case 6: Browse products
     @Test
-    void testfBrowseProducts()
-    {
-        Product product = new Product(1, "Apple", "Fruit", 100, true);
-        Product product1 = new Product(12, "Milk", "Food", 70, true);
+    void testfBrowseProducts() throws QtyNotValidException {
+        Product product = new Product(1, "Apple", "Fruit", 100, true,3);
+        Product product1 = new Product(12, "Milk", "Food", 70, true,4);
         adminService.addProduct(product);
         adminService.addProduct(product1);
         List<Product> productlist = customerServiceimpl.BrowseProduct();

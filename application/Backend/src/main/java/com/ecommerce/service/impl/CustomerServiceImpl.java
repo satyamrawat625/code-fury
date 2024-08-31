@@ -8,6 +8,7 @@ import com.ecommerce.model.Customer;
 import com.ecommerce.model.Product;
 import com.ecommerce.service.CustomerService;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
@@ -49,8 +50,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     // Places an order and returns success status
     @Override
-    public boolean placeOrder(int order_id, String order_date, String delivery_date, String status, int customer_id, int product_id) {
-        boolean flag = customerDao.placeOrder(order_id, order_date, delivery_date, status, customer_id, product_id);
+    public boolean placeOrder(int order_id, int qty,String order_date, String delivery_date, String status, int customer_id, int product_id) throws SQLException {
+        boolean flag = customerDao.placeOrder(order_id,qty, order_date, delivery_date, status, customer_id, product_id);
         return flag;
     }
 
