@@ -20,7 +20,7 @@ public class CustomerDaoImpl implements CustomerDao {
     // Save a new customer record to the database
     @Override
     public Customer save(Customer customer) {
-        String query = "INSERT INTO customers (name, email, password,address,phoneNumber) VALUES (?, ?, ?,?,?)";
+        String query = "INSERT INTO customers (name, email, password, address, phoneNumber) VALUES (?, ?, ?,?,?)";
         try (PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, customer.getName());
             stmt.setString(2, customer.getEmail());
@@ -34,6 +34,7 @@ public class CustomerDaoImpl implements CustomerDao {
                 customer.setId(generatedKeys.getInt(1));
             }
         } catch (SQLException e) {
+            System.out.println(e);
             throw new RuntimeException("Error saving customer", e);
         }
         System.out.println("Register successfully with ID: " + customer.getId());
@@ -126,14 +127,13 @@ public class CustomerDaoImpl implements CustomerDao {
                         stmtUpdateQty.executeUpdate();
 
                         return true;
-                    } else {
-                        throw new InsufficientQuantityException("Insufficient quantity");
-                    }
-                } else {
-                    throw new SQLException("Product not found");
-                }
             }
+        }}
+        catch (Exception e) {
+        throw new RuntimeException("Error placing order", e);
         }
+    }
+        return false;
     }
 
     // Map a ResultSet row to a Customer object

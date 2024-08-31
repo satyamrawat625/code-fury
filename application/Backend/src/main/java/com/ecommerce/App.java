@@ -1,6 +1,8 @@
 package com.ecommerce;
 
+import com.ecommerce.exception.ProductNotFoundException;
 import com.ecommerce.exception.QtyNotValidException;
+import com.ecommerce.exception.SubscriptionNotFoundException;
 import com.ecommerce.factory.ServiceFactory;
 import com.ecommerce.model.Customer;
 import com.ecommerce.model.Product;
@@ -20,7 +22,6 @@ public class App {
         ProductService productService = ServiceFactory.getProductService();
         SubscriptionService subscriptionService = ServiceFactory.getSubscriptionService();
 
-        try {
             // Adding a customer
             addCustomer(customerService);
 
@@ -32,40 +33,67 @@ public class App {
 
             // Managing product subscriptions
             manageProductSubscription(subscriptionService);
-
-        } catch (Exception e) {
-            // Print error message in case of an exception
-            System.err.println("An error occurred: " + e.getMessage());
-        }
+        System.out.println("hii");
     }
 
     private static void addCustomer(CustomerService customerService) {
         // Create a new customer
         Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234", "Pune", "1234567890");
         // Register the customer
-        customerService.registerCustomer(customer);
-        System.out.println("Customer added: " + customer.getName());
+
+        try {
+            customerService.registerCustomer(customer);
+            System.out.println("Customer added: " + customer.getName());
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    private static void manageCustomerSubscriptions(CustomerService customerService) throws Exception {
-        // Activate a subscription
-        customerService.activateSubscription(10);
-        // Deactivate a subscription
-        customerService.deactivateSubsciption(12);
+    private static void manageCustomerSubscriptions(CustomerService customerService) {
+//        // Activate a subscription
+        try{
+            customerService.activateSubscription(10);
+            System.out.println("Subscription activated");
+        }catch (SubscriptionNotFoundException e){
+            e.getMessage();
+        }
+
+//        // Deactivate a subscription
+        try{
+            customerService.deactivateSubsciption(12);
+            System.out.println("Subscription deactivated");
+        }catch (SubscriptionNotFoundException e){
+            e.getMessage();
+        }
         // Place an order and check the status
-        boolean status = customerService.placeOrder(1, 5,"21-08-2024", "23-08-2024", "PENDING", 20, 21);
-        System.out.println("Order placed with status: " + status);
+        boolean status = false;
+        try {
+            status = customerService.placeOrder(1, 5,"21-08-2024", "23-08-2024", "PENDING", 20, 21);
+            System.out.println("Order placed with status: " + status);
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
-    private static void addProduct(ProductService productService) throws QtyNotValidException {
+    private static void addProduct(ProductService productService) {
         // Create a new product
         Product product = new Product(1, "Coffee", "Coffee from CCD", 30, true,4);
         // Add the product
-        productService.addProduct(product);
-        System.out.println("Product added: " + product.getName());
+
+        try{
+            productService.addProduct(product);
+            System.out.println("Product added: " + product.getName());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
         // Update the product
-        productService.updateProduct(product);
+        try {
+            productService.updateProduct(product);
+            System.out.println("Product " + product.getName()+ " updated");
+        } catch (QtyNotValidException ex) {
+            throw new RuntimeException(ex);
+        }
 
         // Retrieve and print all products
         List<Product> plist = productService.getAllProducts();
@@ -73,14 +101,23 @@ public class App {
         plist.forEach(p -> System.out.println(p));
 
         // Retrieve and print a product by its ID
-        Product productWithPid12 = productService.getProductById(12);
-        System.out.println(productWithPid12);
+        try {
+            Product productWithPid12 = productService.getProductById(12);
+            System.out.println(productWithPid12);
+        } catch (ProductNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
 
         // Delete a product
-        productService.deleteProduct(20);
+        try {
+            productService.deleteProduct(20);
+            System.out.println("Product deleted" );
+        } catch (ProductNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
-    private static void manageProductSubscription(SubscriptionService subscriptionService) throws Exception {
+    private static void manageProductSubscription(SubscriptionService subscriptionService) {
         // Subscribe a customer to a product
         Subscription s = subscriptionService.subscribeProduct(1, 2, "weekly");
         System.out.println(s);

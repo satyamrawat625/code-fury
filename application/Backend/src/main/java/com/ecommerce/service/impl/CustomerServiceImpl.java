@@ -18,6 +18,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     public CustomerServiceImpl(){
         customerDao = StorageFactory.getCustomerDao();
+        subscriptionDao= StorageFactory.getSubscriptionDao();
     }
 
     public CustomerServiceImpl(CustomerDao customerDao, ProductDao productDao) {

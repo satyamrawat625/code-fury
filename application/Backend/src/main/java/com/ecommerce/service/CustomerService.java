@@ -11,7 +11,7 @@ public interface CustomerService {
 
     Customer loginCustomer(String email, String password);
 
-    public void activateSubscription(int id);
+    void activateSubscription(int id);
 
     void deactivateSubsciption(int l);
 

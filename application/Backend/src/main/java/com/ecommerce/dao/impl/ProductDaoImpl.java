@@ -22,7 +22,7 @@ public class ProductDaoImpl implements ProductDao {
     // Saves a new product to the database
     @Override
     public void save(Product product) throws QtyNotValidException,RuntimeException {
-        String query = "INSERT INTO products (name, description, price,isavailabel,int qty) VALUES (?, ?, ?,?,?)";
+        String query = "INSERT INTO products (name, description, price,isavailable,int qty) VALUES (?, ?, ?,?,?)";
         if(product.getQty()<0)
         {
             throw new QtyNotValidException("Quantity cannot be negative");
