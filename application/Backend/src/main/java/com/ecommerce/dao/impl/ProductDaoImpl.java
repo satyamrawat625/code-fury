@@ -4,6 +4,7 @@ import com.ecommerce.dao.ProductDao;
 import com.ecommerce.exception.DataAccessException;
 import com.ecommerce.exception.ProductNotFoundException;
 import com.ecommerce.exception.ProductNotFoundException;
+import com.ecommerce.exception.QtyNotValidException;
 import com.ecommerce.model.Product;
 
 import java.sql.*;
@@ -20,13 +21,18 @@ public class ProductDaoImpl implements ProductDao {
 
     // Saves a new product to the database
     @Override
-    public void save(Product product) {
-        String query = "INSERT INTO products (name, description, price,isavailabel) VALUES (?, ?, ?)";
+    public void save(Product product) throws QtyNotValidException,RuntimeException {
+        String query = "INSERT INTO products (name, description, price,isavailabel,int qty) VALUES (?, ?, ?,?,?)";
+        if(product.getQty()<0)
+        {
+            throw new QtyNotValidException("Quantity cannot be negative");
+        }
         try (PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, product.getName());
             stmt.setString(2, product.getDescription());
             stmt.setDouble(3, product.getPrice());
             stmt.setBoolean(4, product.isAvailable());
+            stmt.setInt(5, product.getQty());
             stmt.executeUpdate();
 
             ResultSet generatedKeys = stmt.getGeneratedKeys();
@@ -41,13 +47,17 @@ public class ProductDaoImpl implements ProductDao {
 
     //Update the product details
     @Override
-    public void update(Product product) {
-        String query = "UPDATE products SET name = ?, description = ?, price = ? WHERE id = ?";
+    public void update(Product product) throws ProductNotFoundException,QtyNotValidException {
+        if(product.getQty()<0) {
+          throw new QtyNotValidException("Quantity cannot be negative");
+        }
+        String query = "UPDATE products SET name = ?, description = ?, price = ? ,qty = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, product.getName());
             stmt.setString(2, product.getDescription());
             stmt.setDouble(3, product.getPrice());
             stmt.setInt(4, product.getId());
+            stmt.setInt(5, product.getQty());
             stmt.executeUpdate();
             System.out.println("Product updated successfully");
         } catch (SQLException e) {
@@ -57,7 +67,7 @@ public class ProductDaoImpl implements ProductDao {
 
     //Delete the product from productid
     @Override
-    public void delete(int productId) {
+    public void delete(int productId) throws ProductNotFoundException {
         String query = "DELETE FROM products WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, productId);
@@ -69,7 +79,7 @@ public class ProductDaoImpl implements ProductDao {
 
     //Retrieve all the products
     @Override
-    public List<Product> findAll() {
+    public List<Product> findAll() throws ProductNotFoundException {
         String query = "SELECT * FROM products";
         List<Product> products = new ArrayList<>();
         try (Statement stmt = connection.createStatement()) {
@@ -85,7 +95,7 @@ public class ProductDaoImpl implements ProductDao {
 
     //Retrieve the product by productid
     @Override
-    public Product findById(int productId) {
+    public Product findById(int productId) throws ProductNotFoundException {
         String query = "SELECT * FROM products WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, productId);
@@ -108,6 +118,8 @@ public class ProductDaoImpl implements ProductDao {
         product.setName(rs.getString("name"));
         product.setDescription(rs.getString("description"));
         product.setPrice(rs.getDouble("price"));
+        product.setAvailable(rs.getBoolean("isAvailable"));
+        product.setQty(rs.getInt("qty"));
         return product;
     }
 }

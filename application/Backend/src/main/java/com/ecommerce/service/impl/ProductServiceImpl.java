@@ -1,6 +1,7 @@
 package com.ecommerce.service.impl;
 
 import com.ecommerce.dao.ProductDao;
+import com.ecommerce.exception.QtyNotValidException;
 import com.ecommerce.factory.StorageFactory;
 import com.ecommerce.model.Product;
 import com.ecommerce.service.ProductService;
@@ -17,13 +18,13 @@ public class ProductServiceImpl implements ProductService {
 
     // Adds a new product
     @Override
-    public void addProduct(Product product) {
+    public void addProduct(Product product) throws QtyNotValidException {
         productDao.save(product);
     }
 
     // Updates an existing product
     @Override
-    public void updateProduct(Product product) {
+    public void updateProduct(Product product) throws QtyNotValidException {
         productDao.update(product);
     }
 

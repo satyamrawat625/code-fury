@@ -1,5 +1,6 @@
 package com.ecommerce.Testing.JunitTesting;
 
+import com.ecommerce.exception.QtyNotValidException;
 import com.ecommerce.model.Admin;
 import com.ecommerce.model.Customer;
 import com.ecommerce.model.Product;
@@ -61,9 +62,9 @@ public class AdminTestJunit {
 
     // Test case for adding a new product
     @Test
-    void testAddProduct() {
+    void testAddProduct() throws QtyNotValidException {
         // Create a product for testing
-        Product product = new Product(1, "Apple", "Fruit", 100, true);
+        Product product = new Product(1, "Apple", "Fruit", 100, true,5);
         adminService.addProduct(product);
 
         // Call the service method
@@ -76,9 +77,9 @@ public class AdminTestJunit {
 
     // Test case for updating an existing product
     @Test
-    void testUpdateProduct() {
+    void testUpdateProduct() throws QtyNotValidException {
         // Create a product for testing
-        Product product = new Product(1, "Apple", "Fruit", 100, true);
+        Product product = new Product(1, "Apple", "Fruit", 100, true,5);
         adminService.updateProduct(product);
 
         // Validate the results
@@ -90,8 +91,12 @@ public class AdminTestJunit {
     @Test
     void testDeleteProduct() {
         // Create a product for testing
-        Product product = new Product(1, "Apple", "Fruit", 100, true);
-        productService.addProduct(product);
+        Product product = new Product(1, "Apple", "Fruit", 100, true,3);
+        try {
+            productService.addProduct(product);
+        } catch (QtyNotValidException e) {
+            throw new RuntimeException(e);
+        }
 
         // Call the service method
         adminService.deleteProduct(1);
@@ -104,7 +109,7 @@ public class AdminTestJunit {
     // Test case for adding a new subscription
     @Test
     void testAddSubscription() {
-        Product product = new Product(1, "Apple", "Fruit", 100, true);
+        Product product = new Product(1, "Apple", "Fruit", 100, true,3);
         Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234", "Pune", "1234567890");
         LocalDate localStartDate = LocalDate.of(2024, 8, 24);
         LocalDate localEndDate = LocalDate.of(2025, 8, 24);
@@ -121,7 +126,7 @@ public class AdminTestJunit {
     // Test case for viewing active subscriptions
     @Test
     void testViewActiveSubscription() {
-        Product product = new Product(1, "Apple", "Fruit", 100, true);
+        Product product = new Product(1, "Apple", "Fruit", 100, true,2);
         Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234", "Pune", "1234567890");
         LocalDate localStartDate = LocalDate.of(2024, 8, 24);
         LocalDate localEndDate = LocalDate.of(2025, 8, 24);
@@ -141,7 +146,7 @@ public class AdminTestJunit {
     // Test case for viewing inactive subscriptions
     @Test
     void testViewInactiveSubscription() {
-        Product product = new Product(1, "Apple", "Fruit", 100, true);
+        Product product = new Product(1, "Apple", "Fruit", 100, true,2);
         Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234", "Pune", "1234567890");
         LocalDate localStartDate = LocalDate.of(2024, 8, 24);
         LocalDate localEndDate = LocalDate.of(2025, 8, 24);

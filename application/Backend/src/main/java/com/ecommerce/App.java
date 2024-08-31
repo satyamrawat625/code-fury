@@ -1,5 +1,6 @@
 package com.ecommerce;
 
+import com.ecommerce.exception.QtyNotValidException;
 import com.ecommerce.factory.ServiceFactory;
 import com.ecommerce.model.Customer;
 import com.ecommerce.model.Product;
@@ -52,13 +53,13 @@ public class App {
         // Deactivate a subscription
         customerService.deactivateSubsciption(12);
         // Place an order and check the status
-        boolean status = customerService.placeOrder(1, "21-08-2024", "23-08-2024", "PENDING", 20, 21);
+        boolean status = customerService.placeOrder(1, 5,"21-08-2024", "23-08-2024", "PENDING", 20, 21);
         System.out.println("Order placed with status: " + status);
     }
 
-    private static void addProduct(ProductService productService) {
+    private static void addProduct(ProductService productService) throws QtyNotValidException {
         // Create a new product
-        Product product = new Product(1, "Coffee", "Coffee from CCD", 30, true);
+        Product product = new Product(1, "Coffee", "Coffee from CCD", 30, true,4);
         // Add the product
         productService.addProduct(product);
         System.out.println("Product added: " + product.getName());

@@ -3,6 +3,7 @@ package com.ecommerce.service.impl;
 import com.ecommerce.dao.AdminDao;
 import com.ecommerce.dao.ProductDao;
 import com.ecommerce.dao.SubscriptionDao;
+import com.ecommerce.exception.QtyNotValidException;
 import com.ecommerce.factory.StorageFactory;
 import com.ecommerce.model.Admin;
 import com.ecommerce.model.Product;
@@ -37,13 +38,13 @@ public class AdminServiceImpl implements AdminService {
 
     // Adds a new product
     @Override
-    public void addProduct(Product product) {
+    public void addProduct(Product product) throws QtyNotValidException {
         productDao.save(product);
     }
 
     // Updates an existing product
     @Override
-    public void updateProduct(Product product) {
+    public void updateProduct(Product product) throws QtyNotValidException {
         productDao.update(product);
     }
 

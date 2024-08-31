@@ -6,16 +6,18 @@ public class Product {
     private String description;
     private double price;
     private boolean isAvailable;
+    private int qty;
 
     // Constructors, Getters and Setters
     public Product() {}
 
-    public Product(int id, String name, String description, double price, boolean isAvailable) {
+    public Product(int id, String name, String description, double price, boolean isAvailable,int qty) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.isAvailable = isAvailable;
+        this.qty = 0;
     }
 
     public int getId() {
@@ -58,7 +60,15 @@ public class Product {
         this.isAvailable = isAvailable;
     }
 
-    @Override
+    public int getQty() {
+        return qty;
+    }
+
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
     public String toString() {
         return "Product{" +
                 "id=" + id +
@@ -66,6 +76,7 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", isAvailable=" + isAvailable +
+                ", qty=" + qty +
                 '}';
     }
 }

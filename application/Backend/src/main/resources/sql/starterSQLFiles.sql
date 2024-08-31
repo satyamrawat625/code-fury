@@ -24,16 +24,17 @@ CREATE TABLE products (
     description TEXT,
     price DECIMAL(10,2) NOT NULL,
     isavailabel BOOLEAN,
+    int qty;
     PRIMARY KEY (id)
 );
 
 -- Initialize products table
-INSERT INTO products (name, description, price) VALUES
-('Coffee', 'Premium quality coffee beans', 299.99,1),
-('Tea', 'Assorted tea leaves', 149.50,0),
-('Biscuits', 'Assorted biscuits pack', 89.75,1),
-('Chocolates', 'Mixed chocolates gift pack', 499.00,1),
-('Noodles', 'Instant noodles pack', 59.99,0);
+INSERT INTO products (name, description, price, isavailabel,int qty) VALUES
+('Coffee', 'Premium quality coffee beans', 299.99,1,40),
+('Tea', 'Assorted tea leaves', 149.50,0,10),
+('Biscuits', 'Assorted biscuits pack', 89.75,1,5),
+('Chocolates', 'Mixed chocolates gift pack', 499.00,1,30),
+('Noodles', 'Instant noodles pack', 59.99,0,4);
 
 
 -- Create subscriptions table
@@ -81,13 +82,14 @@ CREATE TABLE Orders (
     status VARCHAR(50) NOT NULL,
     customer_id INT NOT NULL,
     product_id INT NOT NULL,
+    qty INT ,
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
     FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
 -- Initialize the orders table
-INSERT INTO Orders (order_date, delivery_date, status, customer_id, product_id) VALUES
-('2024-08-21', '2024-08-23', 'PENDING', 1, 1),
-('2024-08-22', '2024-08-24', 'SHIPPED', 2, 3),
-('2024-08-20', '2024-08-22', 'DELIVERED', 3, 5),
-('2024-08-19', '2024-08-21', 'CANCELLED', 4, 2),
-('2024-08-23', '2024-08-25', 'PENDING', 5, 4);
+INSERT INTO Orders (order_date, delivery_date, status, customer_id, product_id,qty) VALUES
+('2024-08-21', '2024-08-23', 'PENDING', 1, 1,4),
+('2024-08-22', '2024-08-24', 'SHIPPED', 2, 3,5),
+('2024-08-20', '2024-08-22', 'DELIVERED', 3, 5,3),
+('2024-08-19', '2024-08-21', 'CANCELLED', 4, 2,1),
+('2024-08-23', '2024-08-25', 'PENDING', 5, 4,2);
