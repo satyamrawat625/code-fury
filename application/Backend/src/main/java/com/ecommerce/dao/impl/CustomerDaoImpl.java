@@ -20,7 +20,7 @@ public class CustomerDaoImpl implements CustomerDao {
     // Save a new customer record to the database
     @Override
     public Customer save(Customer customer) {
-        String query = "INSERT INTO customers (name, email, password, address, phoneNumber) VALUES (?, ?, ?,?,?)";
+        String query = "INSERT INTO customers (name, email, password, address, phone) VALUES (?, ?, ?,?,?)";
         try (PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, customer.getName());
             stmt.setString(2, customer.getEmail());

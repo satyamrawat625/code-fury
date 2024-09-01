@@ -25,7 +25,7 @@ public class Admin extends User {
         this.adminRole = adminRole;
     }
 
-    public double getAdminID() {
+    public int getAdminID() {
         return adminID;
     }
 

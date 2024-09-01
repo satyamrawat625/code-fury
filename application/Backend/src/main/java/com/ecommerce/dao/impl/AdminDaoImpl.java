@@ -30,7 +30,7 @@ public class AdminDaoImpl implements AdminDao {
             stmt.setString(1, admin.getName());
             stmt.setString(2, admin.getEmail());
             stmt.setString(3, admin.getPassword());
-            stmt.setInt(4, admin.getId());
+            stmt.setInt(4, admin.getAdminID());
             stmt.setString(5, admin.getAdminRole());
             stmt.executeUpdate();
 
