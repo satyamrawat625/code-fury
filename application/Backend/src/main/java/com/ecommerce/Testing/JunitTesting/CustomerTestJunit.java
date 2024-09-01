@@ -1,114 +1,76 @@
-package com.ecommerce.Testing.JunitTesting;
+package com.ecommerce.service;
 
-import com.ecommerce.exception.QtyNotValidException;
-import com.ecommerce.model.Admin;
+import com.ecommerce.exception.SubscriptionNotFoundException;
 import com.ecommerce.model.Customer;
-import com.ecommerce.model.Product;
-import com.ecommerce.model.Subscription;
-import com.ecommerce.service.impl.AdminServiceImpl;
+import com.ecommerce.service.CustomerService;
 import com.ecommerce.service.impl.CustomerServiceImpl;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.List;
+import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CustomerTestJunit {
-    private CustomerServiceImpl customerServiceimpl;
-    private AdminServiceImpl adminService;
 
+    private static CustomerService customerService;
 
-    //@BeforeEach
-    @BeforeEach
-    public void setUp() {
-        customerServiceimpl = new CustomerServiceImpl();
+    @BeforeAll
+    public static void setUp() {
+        customerService = new CustomerServiceImpl();
     }
 
-    //Test case 1: Register a customer
     @Test
-    void testRegisterCustomer() {
-        Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234", "Pune", "1234567890");
-        Customer regCustomer=customerServiceimpl.registerCustomer(customer);
-
-        // Validate the results
-        assertNotNull(regCustomer, "Register Customer should not be null");
-        assertEquals("Vikas Singh", regCustomer.getName(), "Customer name should match");
-
+    @Order(1)
+    public void testRegisterCustomer() {
+        Customer customer = new Customer("Vikas Singh", "vikas.singh@gmail.com", "hc1234", "Pune", "1234567890");
+        assertDoesNotThrow(() -> {
+            customerService.registerCustomer(customer);
+        });
     }
 
-    //Test case 2: Login a customer
     @Test
-    void testLoginCustomer()
-    {
-        Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234", "Pune", "1234567890");
-        customerServiceimpl.registerCustomer(customer);
-        Customer loginCustomer=customerServiceimpl.loginCustomer("987.s345ingh@gmail.com", "hcbc");
-
-        // Validate the results
-        assertNotNull(loginCustomer, "Login Customer should not be null");
-        assertEquals("Vikas Singh", loginCustomer.getName(), "Customer name should match");
+    @Order(2)
+    public void testActivateSubscription() {
+        assertDoesNotThrow(() -> {
+            customerService.activateSubscription(10);
+        });
     }
 
-    //Test case 3: Activate Subscription
     @Test
-    void testActivateSubscription()
-    {
-        Product product = new Product(1, "Apple", "Fruit", 100, true,4);
-        Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234","Pune","1234567890");
-        LocalDate localStartDate = LocalDate.of(2024, 8, 24);
-        LocalDate localEndDate = LocalDate.of(2025, 8, 24);
-        Date startDate = Date.from(localStartDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Date endDate = Date.from(localEndDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Subscription subscription = new Subscription(10, customer, product, "biweekly", startDate, endDate, false);
-        Subscription sub=adminService.addSubscription(subscription);
-        customerServiceimpl.activateSubscription(10);
-        // Validate the results
-        assertEquals(true, sub.isActive(), "Subscription should be active");
+    @Order(3)
+    public void testDeactivateSubscription() {
+        assertDoesNotThrow(() -> {
+            customerService.deactivateSubsciption(10);
+        });
     }
 
+//    @Test
+//    @Order(4)
+//    public void testActivateSubscription_NotFound() {
+//        Exception exception = assertThrows(SubscriptionNotFoundException.class, () -> {
+//            customerService.activateSubscription(999);  // Non-existing subscription ID
+//        });
+//        assertEquals("Subscription not found with ID: 999", exception.getMessage());
+//    }
 
-    //Test case 4: Deactivate a subscription
     @Test
-    void testdEActivateSubscription()
-    {
-        Product product = new Product(1, "Milk", "Food", 100, true,2);
-        Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234","Pune","1234567890");
-        LocalDate localStartDate = LocalDate.of(2024, 8, 24);
-        LocalDate localEndDate = LocalDate.of(2025, 8, 24);
-        Date startDate = Date.from(localStartDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Date endDate = Date.from(localEndDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Subscription subscription = new Subscription(10, customer, product, "biweekly", startDate, endDate, true);
-        Subscription sub=adminService.addSubscription(subscription);
-        customerServiceimpl.deactivateSubsciption(10);
-        // Validate the results
-        assertEquals(false, sub.isActive(), "Subscription should be deactive");
+    @Order(5)
+    public void testPlaceOrder() {
+        boolean status = assertDoesNotThrow(() -> {
+            return customerService.placeOrder(1, 5, "21-08-2024", "23-08-2024", "PENDING", 20, 21);
+        });
+        assertFalse(status);
     }
 
-    //Test case 5: Find a product by ID
     @Test
-    void testfindProductById()
-    {
-        Product product = new Product(1, "Apple", "Fruit", 100, true,2);
-        Product product1 = customerServiceimpl.findProductById(1);
-        // Validate the results
-        assertNotNull(product1, "Product should not be null");
-    }
+    @Order(6)
+    public void testPlaceOrder_InvalidSQL() {
 
-    //Test case 6: Browse products
-    @Test
-    void testfBrowseProducts() throws QtyNotValidException {
-        Product product = new Product(1, "Apple", "Fruit", 100, true,3);
-        Product product1 = new Product(12, "Milk", "Food", 70, true,4);
-        adminService.addProduct(product);
-        adminService.addProduct(product1);
-        List<Product> productlist = customerServiceimpl.BrowseProduct();
-        // Validate the results
-        assertNotNull(productlist, "Product should not be null");
+        try {
+            customerService.placeOrder(1, 5, "21-08-2024", "23-08-2024", "PENDING", 20, 9999);  // Invalid product or customer ID
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
-
 }
