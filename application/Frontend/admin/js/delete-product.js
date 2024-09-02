@@ -1,8 +1,3 @@
-const product = document.getElementById('searchProductName').text;
-        if (product != null) {
-            alert('Product deleted successfully.');
-        }
-
 document.addEventListener('DOMContentLoaded', function () {
     const fetchProductBtn = document.getElementById('fetchProductBtn');
     const searchProductName = document.getElementById('searchProductName');
@@ -54,7 +49,11 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('price').textContent = `₹${product.price}`;
             document.getElementById('quantity').textContent = product.quantity;
 
-            // deleteProductForm.classList.remove('hidden');
+            // Show the delete product form
+            deleteProductForm.classList.remove('hidden');
+
+            // Hide the fetch button after fetching the product
+            fetchProductBtn.style.display = 'none';
         } catch (error) {
             alert(error);
         }
@@ -66,8 +65,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (dummyProducts[productName]) {
             delete dummyProducts[productName];
             alert('Product deleted successfully.');
+
+            // Hide the delete form and reset the search field
             deleteProductForm.classList.add('hidden');
-            searchProductName.value = '';  // Clear search field
+            searchProductName.value = '';
+            fetchProductBtn.style.display = 'block'; // Show the fetch button again
         } else {
             alert('Error deleting the product.');
         }

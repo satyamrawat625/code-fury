@@ -1,10 +1,3 @@
-/* .saty-class {
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-} */
-
 .saty-class {
     display: flex;
     flex-direction: column;
@@ -37,11 +30,6 @@
     font-size: 0.85rem;
     padding: 0.5em 1em;
 }
-
-/* 
-.saty-class-img {
-    border-radius: 10px;
-} */
 
 .saty-class-img {
     border-radius: 10px;
@@ -293,31 +281,27 @@ footer p {
     margin: 0;
 }
 
+
 .products {
     flex-grow: 1;
     padding: 20px;
     overflow-x: auto;
-
 }
 
 .product-container {
-    width: 60%;
-    /* Sets the width of the container to 60% of the page width */
     display: flex;
     flex-wrap: wrap;
-    /* Allows product cards to wrap to the next line if necessary */
-    gap: 20px;
-    /* Adds space between product cards */
-    justify-content: center;
-    /* Centers the product cards inside the container */
-    padding: 20px;/
+    gap: 20px; /* Adds space between product cards */
+    justify-content: space-around; /* Distributes space evenly around the product cards */
+    padding: 20px;
+    width: 100%; /* Use full width of the container */
 }
 
 .product-card {
     background-color: white;
     padding: 20px;
-    width: 45%;
-    min-width: 300px;
+    width: calc(25% - 20px); /* Four items per row, adjust according to screen size */
+    min-width: 200px; /* Ensure a minimum width */
     border: 1px solid #ddd;
     border-radius: 8px;
     text-align: center;
@@ -359,6 +343,9 @@ footer p {
     margin-bottom: 10px;
 }
 
+
+
+
 .add-btn,
 .subscribe-btn {
     background-color: #007bff;
@@ -380,57 +367,6 @@ footer p {
     border: 1px solid #ddd;
 }
 
-.product-container {
-    width: 60%;
-    /* Sets the width of the container to 60% of the page width */
-    display: flex;
-
-    flex-wrap: wrap;
-    /* Allows product cards to wrap to the next line if necessary */
-    gap: 20px;
-    /* Adds space between product cards */
-    justify-content: center;
-    /* Centers the product cards inside the container */
-    padding: 20px;
-    /* Adds padding inside the container for better spacing */
-}
-
-.product-card {
-    flex: 1 1 calc(33.333% - 20px);
-    /* Makes the product cards responsive */
-    max-width: calc(33.333% - 20px);
-    /* Ensures the cards do not exceed their allocated width */
-    box-sizing: border-box;
-    /* Includes padding and border in the element’s total width and height */
-    background-color: #fff;
-    /* Optional background color for the product card */
-    border: 1px solid #ddd;
-    /* Optional border for the product card */
-    border-radius: 8px;
-    /* Optional rounded corners for the product card */
-    padding: 10px;
-    /* Padding inside each product card */
-    text-align: center;
-    /* Centers text inside the product card */
-}
-
-.product-card img {
-    width: 100%;
-    /* Makes the image take up the full width of the product card */
-    height: auto;
-    /* Keeps the image's aspect ratio */
-    border-bottom: 1px solid #ddd;
-    /* Optional border below the image */
-    margin-bottom: 10px;
-    /* Adds space between the image and the text */
-}
-
-.price {
-    font-size: 1.2em;
-    /* Larger font size for price */
-    margin: 10px 0;
-    /* Margin above and below the price */
-}
 
 .original-price {
     text-decoration: line-through;
