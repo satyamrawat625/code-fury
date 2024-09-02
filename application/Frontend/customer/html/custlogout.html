@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription-Based Food Store</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+    <header class="saty-header">
+        <div class="header-content saty-header-content">
+            <img src="../../admin/images/logo-icon.png" class="logo-image saty-logo-image" alt="Logo">
+            <h1 class="saty-header-title">BigCart</h1>
+            <img src="../../admin/images/admin-home-image.jpg" class="admin-image saty-admin-image" alt="Admin Image">
+        </div>
+        <h2 class="saty-header-tagline">Fresh food, delivered right to your doorstep!</h2>
+    </header>
+
+    <nav style="background-color: white;">
+        <a href="home.html" class="btn">Home</a>
+        <a href="products.html" class="btn">Products</a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products...">
+            <i class="search-icon"></i>
+        </div>
+        <a href="login.html" class="login-btn">Log-Out</a>
+        <a class="cart-icon" href="cart.html">
+            <img src="../images/cart-icon.png" alt="Cart" style="width: 40px;">
+        </a>
+    </nav>
+
+    <br>
+    <div>
+        <h2 style="text-align: center; font-family:Georgia, 'Times New Roman', Times, serif">Popular Products</h2>
+    </div>
+
+    <section class="my-lg-14 my-8">
+        <div class="container">
+            <div class="row g-4 row-cols-lg-5 row-cols-md-3 row-cols-2">
+                <div class="col">
+                    <div class="card card-product h-100 saty-class">
+                        <div class="card-body saty-class-body text-center" data-id="1" data-name="Haldiram's Sev Bhujia"
+                            data-price="18" data-image="../images/snacks.jpg">
+                            <div class="position-relative">
+                                <div class="position-absolute top-0 start-0">
+                                    <span class="badge bg-danger saty-class-badge">Sale</span>
+                                </div>
+                                <a href="#!"><img src="../images/snacks.jpg" alt="Grocery Ecommerce Template"
+                                        class="mb-3 img-fluid saty-class-img" /></a>
+                                <div class="card-product-action">
+                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
+                                        data-bs-target="#quickViewModal">
+                                        <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
+                                            title="Quick View"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Wishlist">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Compare">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-small mb-1">
+                                <a href="#!" class="text-decoration-none text-muted"><small>Snack & Munchies</small></a>
+                            </div>
+                            <h2 class="fs-6"><a href="snacks.html"
+                                    class="text-inherit text-decoration-none saty-class-title">Haldiram's Sev Bhujia</a>
+                            </h2>
+                            <div>
+                                <small class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </small>
+                                <span class="text-muted small">4.5 protein</span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-3">
+                                <div class="saty-class-price">
+                                    ₹18
+                                    <span class="text-decoration-line-through text-muted">₹24</span>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <a href="#!" class="btn btn-primary btn-sm add-to-cart saty-class-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-plus">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    Add
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col">
+                    <div class="card card-product h-100 saty-class">
+                        <div class="card-body saty-class-body text-center" data-id="2" data-name="NutriChoice Digestive"
+                            data-price="23" data-image="../images/bakery.jpg">
+                            <div class="text-center position-relative">
+                                <div class="position-absolute top-0 start-0">
+                                    <span class="badge bg-danger saty-class-badge">14%</span>
+                                </div>
+                                <a href="#!"><img src="../images/bakery.jpg" alt="Grocery Ecommerce Template"
+                                        class="mb-3 img-fluid saty-class-img" /></a>
+                                <div class="card-product-action">
+                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
+                                        data-bs-target="#quickViewModal">
+                                        <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
+                                            title="Quick View"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Wishlist">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Compare">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-small mb-1">
+                                <a href="#!" class="text-decoration-none text-muted"><small>Bakery &
+                                        Biscuits</small></a>
+                            </div>
+                            <h2 class="fs-6"><a href="snacks.html"
+                                    class="text-inherit text-decoration-none saty-class-title">NutriChoice
+                                    Digestive</a></h2>
+                            <div>
+                                <small class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </small>
+                                <span class="text-muted small">1.4gm protein</span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-3">
+                                <div class="saty-class-price">
+                                    ₹23
+                                    <span class="text-decoration-line-through text-muted">₹24</span>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <a href="#!" class="btn btn-primary btn-sm add-to-cart saty-class-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-plus">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    Add
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+
+
+
+                <div class="col">
+                    <div class="card card-product h-100 saty-class">
+                        <div class="card-body saty-class-body text-center" data-id="3"
+                            data-name="Cadbury 5 Star Chocolate" data-price="32" data-image="../images/choco.jpg">
+                            <div class="text-center position-relative">
+                                <div class="position-absolute top-0 start-0">
+                                    <span class="badge bg-danger saty-class-badge">Sale</span>
+                                </div>
+                                <a href="#!"><img src="../images/choco.jpg" alt="Grocery Ecommerce Template"
+                                        class="mb-3 img-fluid saty-class-img" /></a>
+                                <div class="card-product-action">
+                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
+                                        data-bs-target="#quickViewModal">
+                                        <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
+                                            title="Quick View"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Wishlist">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Compare">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-small mb-1">
+                                <a href="#!" class="text-decoration-none text-muted"><small>Bakery &
+                                        Biscuits</small></a>
+                            </div>
+                            <h2 class="fs-6"><a href="snacks.html"
+                                    class="text-inherit text-decoration-none saty-class-title">Cadbury 5
+                                    Star Chocolate</a></h2>
+                            <div>
+                                <small class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </small>
+                                <span class="text-muted small">469 cal</span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-3">
+                                <div class="saty-class-price">₹32
+                                    <span class="text-decoration-line-through text-muted">₹24</span>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <a href="#!" class="btn btn-primary btn-sm add-to-cart saty-class-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-plus">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    Add
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col">
+                    <div class="card card-product h-100 saty-class">
+                        <div class="card-body saty-class-body text-center" data-id="4" data-name="Homemade snacks"
+                            data-price="18" data-image="../images/homemade.jpg">
+                            <div class="text-center position-relative">
+                                <div class="position-absolute top-0 start-0">
+                                    <span class="badge bg-danger saty-class-badge">Sale</span>
+                                </div>
+                                <a href="#!"><img src="../images/homemade.jpg" alt="Grocery Ecommerce Template"
+                                        class="mb-3 img-fluid saty-class-img" /></a>
+                                <div class="card-product-action">
+                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
+                                        data-bs-target="#quickViewModal">
+                                        <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
+                                            title="Quick View"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Wishlist">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Compare">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-small mb-1">
+                                <a href="#!" class="text-decoration-none text-muted"><small>Snack &
+                                        Munchies</small></a>
+                            </div>
+                            <h2 class="fs-6"><a href="snacks.html"
+                                    class="text-inherit text-decoration-none saty-class-title">HomeMade
+                                    Snacks</a></h2>
+                            <div>
+                                <small class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </small>
+                                <span class="text-muted small">149 cal</span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-3">
+                                <div class="saty-class-price">₹18
+                                    <span class="text-decoration-line-through text-muted">₹24</span>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <a href="#!" class="btn btn-primary btn-sm add-to-cart saty-class-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-plus">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    Add
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col">
+                    <div class="card card-product h-100 saty-class">
+                        <div class="card-body saty-class-body text-center" data-name="Chips" data-id="5" data-price="18"
+                            data-image="../images/chips.jpg">
+                            <div class="text-center position-relative">
+                                <div class="position-absolute top-0 start-0">
+                                    <span class="badge bg-danger saty-class-badge">Sale</span>
+                                </div>
+                                <a href="#!"><img src="../images/chips.jpg" alt="Grocery Ecommerce Template"
+                                        class="mb-3 img-fluid saty-class-img" /></a>
+                                <div class="card-product-action">
+                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
+                                        data-bs-target="#quickViewModal">
+                                        <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
+                                            title="Quick View"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Wishlist">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Compare">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-small mb-1">
+                                <a href="#!" class="text-decoration-none text-muted"><small>Snack &
+                                        Munchies</small></a>
+                            </div>
+                            <h2 class="fs-6"><a href="snacks.html"
+                                    class="text-inherit text-decoration-none saty-class-title">Chips</a>
+                            </h2>
+                            <div>
+                                <small class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </small>
+                                <span class="text-muted small">4.9gm protein</span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-3">
+                                <div class="saty-class-price">₹18</span>
+                                    <span class="text-decoration-line-through text-muted">₹24</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-2">
+                                <a href="#!" class="btn btn-primary btn-sm add-to-cart saty-class-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-plus">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    Add
+                                </a>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+
+
+
+        <div class="container">
+            <div class="row g-4 row-cols-lg-5 row-cols-md-3 row-cols-2">
+                <div class="col">
+                    <div class="card card-product h-100 saty-class">
+                        <div class="card-body saty-class-body text-center" data-id="6" data-name="Salted Popcorn"
+                            data-price="18" data-image="../images/popcorn.png">
+                            <div class="text-center position-relative">
+                                <div class="position-absolute top-0 start-0">
+                                    <span class="badge bg-danger saty-class-badge">Sale</span>
+                                </div>
+                                <a href="#!"><img src="../images/popcorn.png" alt="Grocery Ecommerce Template"
+                                        class="mb-3 img-fluid saty-class-img" /></a>
+                                <div class="card-product-action">
+                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
+                                        data-bs-target="#quickViewModal">
+                                        <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
+                                            title="Quick View"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Wishlist">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Compare">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-small mb-1">
+                                <a href="#!" class="text-decoration-none text-muted"><small>Instant
+                                        Food</small></a>
+                            </div>
+                            <h2 class="fs-6"><a href="snacks.html"
+                                    class="text-inherit text-decoration-none saty-class-title">Salted
+                                    Instant Popcorn</a></h2>
+                            <div>
+                                <small class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </small>
+                                <span class="text-muted small">2.7 fat</span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-3">
+                                <div class="saty-class-price">₹18
+                                    <span class="text-decoration-line-through text-muted">₹24</span>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <a href="#!" class="btn btn-primary btn-sm add-to-cart saty-class-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-plus">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    Add
+                                </a>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col">
+                    <div class="card card-product h-100 saty-class">
+                        <div class="card-body saty-class-body text-center" data-id="7" data-name="Dairy, Bread & Eggs"
+                            data-price="18" data-image="../images/greek.jpeg">
+                            <div class="text-center position-relative">
+                                <div class="position-absolute top-0 start-0">
+                                    <span class="badge bg-danger saty-class-badge">Sale</span>
+                                </div>
+                                <a href="#!"><img src="../images/greek.jpeg" alt="Grocery Ecommerce Template"
+                                        class="mb-3 img-fluid saty-class-img" /></a>
+                                <div class="card-product-action">
+                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
+                                        data-bs-target="#quickViewModal">
+                                        <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
+                                            title="Quick View"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Wishlist">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Compare">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-small mb-1">
+                                <a href="#!" class="text-decoration-none text-muted"><small>Dairy, Bread
+                                        &
+                                        Eggs</small></a>
+                            </div>
+                            <h2 class="fs-6"><a href="snacks.html"
+                                    class="text-inherit text-decoration-none saty-class-title">Blueberry
+                                    Greek Yogurt</a></h2>
+                            <div>
+                                <small class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </small>
+                                <span class="text-muted small">4gm protein</span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-3">
+                                <div class="saty-class-price">₹18
+                                    <span class="text-decoration-line-through text-muted">₹24</span>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <a href="#!" class="btn btn-primary btn-sm add-to-cart saty-class-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-plus">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    Add
+                                </a>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col">
+                    <div class="card card-product h-100 saty-class">
+                        <div class="card-body saty-class-body text-center" data-id="8" data-name="Dairy, Bread & Eggs"
+                            data-price="18" data-image="../images/cheese.jpg">
+                            <div class="text-center position-relative">
+                                <div class="position-absolute top-0 start-0">
+                                    <span class="badge bg-danger saty-class-badge">Sale</span>
+                                </div>
+                                <a href="#!"><img src="../images/cheese.jpg" alt="Grocery Ecommerce Template"
+                                        class="mb-3 img-fluid saty-class-img" /></a>
+                                <div class="card-product-action">
+                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
+                                        data-bs-target="#quickViewModal">
+                                        <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
+                                            title="Quick View"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Wishlist">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Compare">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-small mb-1">
+                                <a href="#!" class="text-decoration-none text-muted"><small>Dairy,
+                                        Bread &
+                                        Eggs</small></a>
+                            </div>
+                            <h2 class="fs-6"><a href="snacks.html"
+                                    class="text-inherit text-decoration-none saty-class-title">Britannia
+                                    Cheese Slices</a></h2>
+                            <div>
+                                <small class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </small>
+                                <span class="text-muted small">120 cal</span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-3">
+                                <div class="saty-class-price">₹18
+                                    <span class="text-decoration-line-through text-muted">₹24</span>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <a href="#!" class="btn btn-primary btn-sm add-to-cart saty-class-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-plus">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    Add
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+
+
+
+
+                <div class="col">
+                    <div class="card card-product h-100 saty-class">
+                        <div class="card-body saty-class-body text-center" data-id="9" data-name="Instant Food"
+                            data-price="18" data-image="../images/kellogs.jpg">
+                            <div class="text-center position-relative">
+                                <div class="position-absolute top-0 start-0">
+                                    <span class="badge bg-danger saty-class-badge">Sale</span>
+                                </div>
+                                <a href="#!"><img src="../images/kellogs.jpg" alt="Grocery Ecommerce Template"
+                                        class="mb-3 img-fluid saty-class-img" /></a>
+                                <div class="card-product-action">
+                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
+                                        data-bs-target="#quickViewModal">
+                                        <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
+                                            title="Quick View"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Wishlist">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Compare">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-small mb-1">
+                                <a href="#!" class="text-decoration-none text-muted"><small>Instant
+                                        Food</small></a>
+                            </div>
+                            <h2 class="fs-6"><a href="snacks.html"
+                                    class="text-inherit text-decoration-none saty-class-title">Kellogg's
+                                    Original Cereals</a></h2>
+                            <div>
+                                <small class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </small>
+                                <span class="text-muted small">90 fat</span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-3">
+                                <div class="saty-class-price">₹18
+                                    <span class="text-decoration-line-through text-muted">₹24</span>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <a href="#!" class="btn btn-primary btn-sm add-to-cart saty-class-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-plus">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    Add
+                                </a>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col">
+                    <div class="card card-product h-100 saty-class">
+                        <div class="card-body saty-class-body text-center" data-id="10" data-name="Snacks & Munchies"
+                            data-price="50" data-image="../images/cereal.jpg">
+                            <div class="text-center position-relative">
+                                <div class="position-absolute top-0 start-0">
+                                    <span class="badge bg-danger saty-class-badge">Sale</span>
+                                </div>
+                                <a href="#!"><img src="../images/cereal.jpg" alt="Grocery Ecommerce Template"
+                                        class="mb-3 img-fluid saty-class-img" /></a>
+                                <div class="card-product-action">
+                                    <a href="#!" class="btn-action" data-bs-toggle="modal"
+                                        data-bs-target="#quickViewModal">
+                                        <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
+                                            title="Quick View"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Wishlist">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
+                                    <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                        title="Compare">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-small mb-1">
+                                <a href="#!" class="text-decoration-none text-muted"><small>Snack &
+                                        Munchies</small></a>
+                            </div>
+                            <h2 class="fs-6"><a href="snacks.html"
+                                    class="text-inherit text-decoration-none saty-class-title">Slurrp
+                                    Millet Chocolate</a></h2>
+                            <div>
+                                <small class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </small>
+                                <span class="text-muted small">67gm Protein</span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-3">
+                                <div class="saty-class-price">₹50
+                                    <!-- <br> -->
+                                    <span class="text-decoration-line-through text-muted">₹55</span>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <a href="#!" class="btn btn-primary btn-sm add-to-cart saty-class-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-plus">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    Add
+                                </a>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <br>
+
+    <div class="container-fluid" style="background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);">
+        <br>
+        <div>
+            <h2 style="text-align: center; font-family:Georgia, 'Times New Roman', Times, serif">Upcoming Subscription
+                Details
+            </h2>
+        </div>
+        <div class="container p-5">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card h-100 shadow-lg">
+                        <div class="card-body">
+                            <div class="text-center p-3">
+                                <h5 class="card-title">Student-Subscription</h5>
+                                <small>Individual</small>
+                                <br><br>
+                                <span class="h2">Rs.39</span>/month
+                                <br><br>
+                            </div>
+                            <p class="card-text">Perfect for those who need regular restocking every week. Enjoy getting
+                                fresh products delivered every 7 days, ensuring you always have what you need.</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                    <path
+                                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                                </svg> Fresh deliveries every week</li>
+                            <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                    <path
+                                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                                </svg> Save 10% on every purchase</li>
+                            <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                    <path
+                                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                                </svg> Ideal for College Students or Young individuals</li>
+                        </ul>
+                        <div class="card-body text-center">
+                            <button class="btn btn-outline-primary btn-lg" style="border-radius:30px"
+                                onclick="redirectToPayment('Student-Subscription', 39)">Select</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card h-100 shadow-lg">
+                        <div class="card-body">
+                            <div class="text-center p-3">
+                                <h5 class="card-title">Small Households</h5>
+                                <small>Family of 3 or 4</small>
+                                <br><br>
+                                <span class="h2">Rs 69</span>/month
+                                <br><br>
+                            </div>
+                            <p class="card-text">Designed for families or those with slightly lower consumption needs.
+                                Get your essentials delivered every two weeks and avoid the hassle of frequent orders.
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                    <path
+                                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                                </svg> Deliveries every 14 days</li>
+                            <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                    <path
+                                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                                </svg> Save 12% on every purchase</li>
+                            <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                    <path
+                                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                                </svg> Flexible changes to your order before delivery</li>
+                        </ul>
+                        <div class="card-body text-center">
+                            <button class="btn btn-outline-primary btn-lg" style="border-radius:30px"
+                                onclick="redirectToPayment('Small Households', 69)">Select</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card h-100 shadow-lg">
+                        <div class="card-body">
+                            <div class="text-center p-3">
+                                <h5 class="card-title">Premium</h5>
+                                <small>Large Orders</small>
+                                <br><br>
+                                <span class="h2">Rs 129</span>/month
+                                <br><br>
+                            </div>
+                            <p class="card-text">The best choice for those who plan ahead. Receive a bulk delivery once
+                                a month and stay stocked up for the entire month without the need to reorder frequently.
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                    <path
+                                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                                </svg> Convenient monthly deliveries</li>
+                            <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                    <path
+                                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                                </svg> Save 15% on every purchase</li>
+                            <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                    <path
+                                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                                </svg> Easily adjust the items in your order before your delivery date</li>
+                        </ul>
+                        <div class="card-body text-center">
+                            <button class="btn btn-outline-primary btn-lg" style="border-radius:30px"
+                                onclick="redirectToPayment('Premium', 129)">Select</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 BigCart. All Rights Reserved.</p>
+        </footer>
+
+        <script src="../js/index.js">
+
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+
+</body>
+
+</html>
