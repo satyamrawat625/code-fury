@@ -84,11 +84,11 @@ public class Subscription {
     public String toString() {
         return "Subscription{" +
                 "id=" + id +
-                ", customer=" + customer +
-                ", product=" + product +
+//                ", customer=" + customer +
+//                ", product=" + product +
                 ", frequency='" + frequency + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
+//                ", startDate=" + startDate +
+//                ", endDate=" + endDate +
                 ", isActive=" + isActive +
                 '}';
     }

@@ -15,7 +15,7 @@ public interface CustomerService {
 
     void deactivateSubsciption(int l);
 
-    boolean placeOrder(int i, int qty,String s, String s1, String pending, int i1, int i2) throws SQLException;
+    boolean placeOrder(int i, int qty,String s, String s1, String pending, int customerId, int productId) throws SQLException;
 
     Product findProductById(int id);
     List<Product> BrowseProduct();

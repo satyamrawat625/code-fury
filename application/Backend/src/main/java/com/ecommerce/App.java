@@ -33,12 +33,12 @@ public class App {
 
             // Managing product subscriptions
             manageProductSubscription(subscriptionService);
-        System.out.println("hii");
+        System.out.println("This is the end of program");
     }
 
     private static void addCustomer(CustomerService customerService) {
-        // Create a new customer
-        Customer customer = new Customer("Vikas Singh", "987.s345ingh@gmail.com", "hc1234", "Pune", "1234567890");
+        // Create a new customer, if this emailId already exists, it will throw exception
+        Customer customer = new Customer("Vikas Singh", "vikas234@gmail.com", "hc1234", "Pune", "1234567890");
         // Register the customer
 
         try {
@@ -47,6 +47,7 @@ public class App {
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        System.out.println();
     }
 
     private static void manageCustomerSubscriptions(CustomerService customerService) {
@@ -68,16 +69,17 @@ public class App {
         // Place an order and check the status
         boolean status = false;
         try {
-            status = customerService.placeOrder(1, 5,"21-08-2024", "23-08-2024", "PENDING", 20, 21);
-            System.out.println("Order placed with status: " + status);
+            customerService.placeOrder(5, 2,"2024-08-23", "2024-08-25", "PENDING", 5, 4);
+            System.out.println("Order placed for given customer");
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
+        System.out.println();
     }
 
     private static void addProduct(ProductService productService) {
         // Create a new product
-        Product product = new Product(1, "Coffee", "Coffee from CCD", 30, true,4);
+        Product product = new Product(6, "Coffee", "Coffee from CCD", 30, true,4);
         // Add the product
 
         try{
@@ -91,9 +93,11 @@ public class App {
         try {
             productService.updateProduct(product);
             System.out.println("Product " + product.getName()+ " updated");
+
         } catch (QtyNotValidException ex) {
             throw new RuntimeException(ex);
         }
+        System.out.println();
 
         // Retrieve and print all products
         List<Product> plist = productService.getAllProducts();
@@ -110,11 +114,15 @@ public class App {
 
         // Delete a product
         try {
-            productService.deleteProduct(20);
-            System.out.println("Product deleted" );
+//            add any id from existing ids
+            int id= 10;
+            productService.deleteProduct(id);
+            System.out.println("Product deleted with id: "+ id );
         } catch (ProductNotFoundException e) {
             System.err.println(e.getMessage());
         }
+        System.out.println();
+
     }
 
     private static void manageProductSubscription(SubscriptionService subscriptionService) {
@@ -123,18 +131,21 @@ public class App {
         System.out.println(s);
 
         // Activate a subscription
-        subscriptionService.activateSubscription(10);
+        subscriptionService.activateSubscription(39);
         // Deactivate a subscription
-        subscriptionService.deactivateSubscription(10);
+        subscriptionService.deactivateSubscription(65);
 
         // Retrieve and print active subscriptions
         List<Subscription> activeSubscriptionList = subscriptionService.getActiveSubscriptions();
+        System.out.println();
         System.out.println("Active subscriptions:");
         activeSubscriptionList.forEach(System.out::println);
 
         // Retrieve and print inactive subscriptions
         List<Subscription> inActiveSubscriptionList = subscriptionService.getInactiveSubscriptions();
+        System.out.println();
         System.out.println("Inactive subscriptions:");
         inActiveSubscriptionList.forEach(System.out::println);
+        System.out.println();
     }
 }

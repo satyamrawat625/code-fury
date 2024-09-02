@@ -22,7 +22,7 @@ public class ProductDaoImpl implements ProductDao {
     // Saves a new product to the database
     @Override
     public void save(Product product) throws QtyNotValidException,RuntimeException {
-        String query = "INSERT INTO products (name, description, price,isavailable,int qty) VALUES (?, ?, ?,?,?)";
+        String query = "INSERT INTO products (name, description, price,isavailable,qty) VALUES (?, ?, ?,?,?)";
         if(product.getQty()<0)
         {
             throw new QtyNotValidException("Quantity cannot be negative");
@@ -39,7 +39,6 @@ public class ProductDaoImpl implements ProductDao {
             if (generatedKeys.next()) {
                 product.setId(generatedKeys.getInt(1));
             }
-            System.out.println("Product saved successfully with ID: " + product.getId());
         } catch (SQLException e) {
             throw new RuntimeException("Product with ID: " + product.getId() + " already exists");
         }
@@ -59,7 +58,6 @@ public class ProductDaoImpl implements ProductDao {
             stmt.setInt(4, product.getId());
             stmt.setInt(5, product.getQty());
             stmt.executeUpdate();
-            System.out.println("Product updated successfully");
         } catch (SQLException e) {
             throw new ProductNotFoundException("Product with product id" + product.getId() + " not found");
         }

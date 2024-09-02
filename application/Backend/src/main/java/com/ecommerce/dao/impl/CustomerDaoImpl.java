@@ -20,7 +20,7 @@ public class CustomerDaoImpl implements CustomerDao {
     // Save a new customer record to the database
     @Override
     public Customer save(Customer customer) {
-        String query = "INSERT INTO customers (name, email, password, address, phone) VALUES (?, ?, ?,?,?)";
+        String query = "INSERT INTO customers (name, email, password, address, phoneNumber) VALUES (?, ?, ?,?,?)";
         try (PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, customer.getName());
             stmt.setString(2, customer.getEmail());
@@ -96,7 +96,7 @@ public class CustomerDaoImpl implements CustomerDao {
             throws SQLException, InsufficientQuantityException {
 
         String queryQty = "SELECT qty FROM products WHERE id = ?";
-        String insertOrderQuery = "INSERT INTO orders (orderId, orderDate, deliveryDate, status, customerId, productId, qty) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String insertOrderQuery = "INSERT INTO Orders (order_date, delivery_date, status, customer_id, product_id, qty) VALUES ( ?, ?, ?, ?, ?, ?)";
         String updateProductQtyQuery = "UPDATE products SET qty = ? WHERE id = ?";
 
         try (PreparedStatement stmtQty = connection.prepareStatement(queryQty);
@@ -112,14 +112,15 @@ public class CustomerDaoImpl implements CustomerDao {
                     // Check if there is enough quantity
                     if (remQty >= qty) {
                         // Insert the order
-                        stmtOrder.setInt(1, orderId);
-                        stmtOrder.setString(2, orderDate);
-                        stmtOrder.setString(3, deliveryDate);
-                        stmtOrder.setString(4, status);
-                        stmtOrder.setInt(5, customerId);
-                        stmtOrder.setInt(6, productId);
-                        stmtOrder.setInt(7, qty);
+                        stmtOrder.setString(1, orderDate);
+                        stmtOrder.setString(2, deliveryDate);
+                        stmtOrder.setString(3, status);
+                        stmtOrder.setInt(4, customerId);
+                        stmtOrder.setInt(5, productId);
+                        stmtOrder.setInt(6, qty);
                         stmtOrder.executeUpdate();
+
+
 
                         // Update the product quantity
                         stmtUpdateQty.setInt(1, remQty - qty);
@@ -127,8 +128,12 @@ public class CustomerDaoImpl implements CustomerDao {
                         stmtUpdateQty.executeUpdate();
 
                         return true;
-            }
-        }}
+                    }
+                    else {
+                        System.out.println("insufficient qty");
+                        return  false;
+                    }
+                }}
         catch (Exception e) {
         throw new RuntimeException("Error placing order", e);
         }
